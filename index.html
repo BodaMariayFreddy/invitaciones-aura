@@ -177,6 +177,10 @@
             filter: brightness(40%); /* Oscurece el video para que se lea el texto */
         }
 
+        .hero-content container {
+            z-index: 2;
+        }
+
         .hero-content h1 {
             color: var(--color-secondary);
             font-size: 4.5rem;
@@ -433,8 +437,8 @@
 
         <div class="phone-mockup-wrapper">
             <div class="phone-mockup">
-                <video class="phone-video" autoplay muted loop playsinline>
-                    <source src="https://player.vimeo.com/external/453863453.sd.mp4?s=a736235b21360949473378511891882263753237&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+                <video class="phone-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1606103920295-9a091573f160?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80">
+                    <source src="https://player.vimeo.com/external/482862437.sd.mp4?s=90b719d33c93512b779610f4d01b7c2185635502&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
                 </video>
             </div>
         </div>
@@ -457,7 +461,7 @@
 
             <div class="detail-block">
                 <div class="detail-img">
-                    <img src="https://images.unsplash.com/photo-1522673607200-164530389393?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Novios felices">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Novios felices">
                 </div>
                 <div class="detail-info">
                     <h3>Cuenta tu historia</h3>
@@ -568,5 +572,25 @@
         <p style="font-size: 0.8rem; opacity: 0.7;">© 2024 AURA Digital Wedding Suites. Todos los derechos reservados.</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Reproducción automática iniciada correctamente
+                    })
+                    .catch(error => {
+                        // La reproducción automática fue evitada por el navegador.
+                        // A veces pasa si el usuario no ha interactuado con la página.
+                        console.log("Autoplay bloqueado por el navegador, requiere interacción del usuario.");
+                        video.muted = true; // Asegurar que está muteado ayuda a veces
+                        video.play();
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
