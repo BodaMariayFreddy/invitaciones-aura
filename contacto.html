@@ -3,41 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>AURA | Contacto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body { background: #FDFBF7; color: #1A1A1A; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
-        .nav { padding: 2rem; position: absolute; width: 100%; }
-        .back { color: #999; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; }
-        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-        .box { width: 100%; max-width: 600px; padding: 3rem; background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); }
-        h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; text-align: center; color: #C5A059; }
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #eee; background: #fafafa; font-family: 'Montserrat', sans-serif; outline: none; }
+        .nav { padding: 2rem; position: absolute; width: 100%; top: 0; }
+        a.back { color: #999; text-decoration: none; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; margin-left: 2rem; }
+        
+        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 6rem 1rem; }
+        .box { width: 100%; max-width: 600px; padding: 3rem; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        h1 { font-family: 'Cinzel', serif; font-size: 2rem; text-align: center; color: #C5A059; margin-bottom: 2rem; }
+        
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 1.5rem; border: 1px solid #eee; background: #fafafa; font-family: 'Montserrat', sans-serif; outline: none; }
         input:focus, select:focus, textarea:focus { border-color: #C5A059; background: #fff; }
+        
         button { width: 100%; padding: 1.2rem; background: #C5A059; color: white; border: none; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; font-weight: 600; }
         button:hover { background: #1A1A1A; }
     </style>
 </head>
 <body>
-    <div class="nav"><a href="index.html" class="back">← Volver al inicio</a></div>
+    <div class="nav"><a href="index.html" class="back">← Volver</a></div>
     <div class="container">
         <div class="box">
-            <h1>Hablemos</h1>
-            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Cuéntanos los detalles de tu boda.</p>
-            <form>
-                <input type="text" placeholder="Nombres de la pareja">
-                <input type="email" placeholder="Email de contacto">
-                <input type="text" placeholder="Fecha del evento">
-                <select>
+            <h1>Empecemos</h1>
+            <form action="https://formspree.io/f/TU_LINK" method="POST">
+                <input type="text" name="nombres" placeholder="Nombres de la pareja" required>
+                <input type="email" name="email" placeholder="Email de contacto" required>
+                <input type="text" name="fecha" placeholder="Fecha del evento">
+                <select name="estilo">
                     <option disabled selected>Selecciona un Estilo...</option>
                     <option>Botánico</option>
                     <option>Minimal</option>
                     <option>Gold Luxury</option>
                     <option>Romántico</option>
                     <option>Boho Chic</option>
-                    <option>Diseño A Medida</option>
+                    <option>Bespoke (A Medida)</option>
                 </select>
-                <textarea rows="4" placeholder="Mensaje o dudas..."></textarea>
-                <button>Enviar Solicitud</button>
+                <textarea name="mensaje" rows="4" placeholder="Mensaje..."></textarea>
+                <button type="submit">Enviar Solicitud</button>
             </form>
         </div>
     </div>
