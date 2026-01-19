@@ -2,37 +2,173 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA | Contacto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        body { background: #0a0a0a; color: white; font-family: 'Lato', sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
-        .box { width: 100%; max-width: 600px; padding: 2rem; }
-        h1 { font-family: 'Cinzel', serif; color: #C5A059; text-align: center; font-size: 2.5rem; }
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; background: #1a1a1a; border: none; color: white; border-bottom: 2px solid #333; outline: none; }
-        input:focus { border-color: #C5A059; }
-        button { width: 100%; padding: 20px; background: #C5A059; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
-        .back { position: absolute; top: 20px; left: 20px; color: #666; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; }
+        :root {
+            --bg: #FDFBF7;           /* Crema Nupcial */
+            --surface: #FFFFFF;      /* Blanco */
+            --text: #1A1A1A;         /* Negro Suave */
+            --text-light: #666;
+            --accent: #C5A059;       /* Oro Mate */
+            --border: rgba(0,0,0,0.1);
+            
+            --f-head: 'Cinzel', serif;
+            --f-body: 'Montserrat', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--f-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NAVEGACIÓN */
+        nav { padding: 2rem 5%; position: absolute; width: 100%; top: 0; left: 0; }
+        a.back { 
+            color: var(--text-light); text-decoration: none; text-transform: uppercase; 
+            letter-spacing: 2px; font-size: 0.75rem; font-weight: 600; transition: 0.3s;
+        }
+        a.back:hover { color: var(--accent); }
+
+        /* CONTENEDOR CENTRAL */
+        .container {
+            flex: 1; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem 2rem;
+        }
+
+        .form-box {
+            width: 100%; max-width: 700px; padding: 4rem;
+            background: var(--surface);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        h1 { 
+            font-family: var(--f-head); font-size: 2.5rem; color: var(--accent); 
+            margin-bottom: 1rem; text-align: center; font-weight: 400;
+        }
+        p.intro { 
+            text-align: center; color: var(--text-light); margin-bottom: 3rem; 
+            font-size: 0.95rem; line-height: 1.6;
+        }
+
+        /* GRID DEL FORMULARIO */
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .group { margin-bottom: 2rem; }
+
+        label {
+            display: block; font-size: 0.7rem; text-transform: uppercase; 
+            letter-spacing: 1px; color: var(--text-light); margin-bottom: 8px; font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%; padding: 12px 0;
+            background: transparent;
+            border: none; border-bottom: 1px solid #ddd;
+            font-family: var(--f-body); font-size: 1rem; color: var(--text);
+            outline: none; transition: 0.3s; border-radius: 0;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Estilo para el select placeholder */
+        select { cursor: pointer; color: var(--text); }
+        select:invalid { color: #999; }
+
+        /* BOTÓN */
+        button {
+            width: 100%; padding: 1.5rem;
+            background: var(--accent); color: white;
+            border: none; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            transition: 0.3s; margin-top: 1rem;
+        }
+        button:hover { background: var(--text); }
+
+        /* FOOTER SIMPLE */
+        .footer-note { text-align: center; font-size: 0.75rem; color: #aaa; margin-top: 2rem; }
+
+        /* RESPONSIVE */
+        @media(max-width: 768px) {
+            .form-box { padding: 2rem; box-shadow: none; background: transparent; border: none; }
+            .row { grid-template-columns: 1fr; gap: 0; }
+            h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back">← Salir</a>
-    <div class="box">
-        <h1>Empecemos</h1>
-        <form>
-            <input type="text" placeholder="Nombres de la Pareja">
-            <input type="email" placeholder="Email de contacto">
-            <input type="text" placeholder="Fecha del Evento">
-            <select>
-                <option>Seleccionar Estilo...</option>
-                <option>Botánico</option>
-                <option>Minimal</option>
-                <option>Gold</option>
-                <option>Romántico</option>
-                <option>Boho</option>
-            </select>
-            <textarea rows="4" placeholder="Contadnos un poco más..."></textarea>
-            <button>Enviar Solicitud</button>
-        </form>
+
+    <nav>
+        <a href="index.html" class="back">← Volver al inicio</a>
+    </nav>
+
+    <div class="container">
+        <div class="form-box">
+            <h1>Empecemos</h1>
+            <p class="intro">
+                Cuéntanos los detalles de vuestro gran día. <br>
+                Solo aceptamos un número limitado de bodas al mes para garantizar la excelencia.
+            </p>
+
+            <form action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+                
+                <div class="row">
+                    <div class="group">
+                        <label>Nombre de él/ella</label>
+                        <input type="text" name="nombre1" required placeholder="Ej: Ana">
+                    </div>
+                    <div class="group">
+                        <label>Nombre de él/ella</label>
+                        <input type="text" name="nombre2" required placeholder="Ej: Carlos">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="group">
+                        <label>Tu Email</label>
+                        <input type="email" name="email" required placeholder="hola@email.com">
+                    </div>
+                    <div class="group">
+                        <label>Fecha del Evento</label>
+                        <input type="text" name="fecha" placeholder="DD / MM / AAAA">
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label>Colección de Interés</label>
+                    <select name="estilo" required>
+                        <option value="" disabled selected>Selecciona vuestro estilo...</option>
+                        <option value="Botánico">Serie 01: Botánico</option>
+                        <option value="Minimal">Serie 02: Minimal</option>
+                        <option value="Gold">Serie 03: Gold Luxury</option>
+                        <option value="Romantico">Serie 04: Romántico</option>
+                        <option value="Boho">Serie 05: Boho Chic</option>
+                        <option value="Bespoke">Diseño 100% A Medida (Bespoke)</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label>Detalles o Dudas</label>
+                    <textarea name="mensaje" rows="3" placeholder="Contadnos un poco más sobre vuestra idea..."></textarea>
+                </div>
+
+                <button type="submit">Enviar Solicitud</button>
+                
+                <div class="footer-note">
+                    Respondemos en menos de 24h laborables.
+                </div>
+            </form>
+        </div>
     </div>
+
 </body>
 </html>
