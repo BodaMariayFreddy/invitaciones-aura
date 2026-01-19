@@ -1,235 +1,853 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AURA - Invitaciones de boda digitales de alta costura. Diseño editorial, tecnología inmersiva y gestión de invitados.">
+    <meta name="author" content="Aura Digital Suites">
+    <meta property="og:title" content="AURA | Wedding Digital Atelier">
+    <meta property="og:description" content="La invitación de boda redefinida.">
+    <meta name="theme-color" content="#0a0a0a">
+    
     <title>AURA | Digital Wedding Atelier</title>
-    <meta name="description" content="Invitaciones de boda digitales de alta costura.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- SISTEMA DE DISEÑO (AGENCY GRADE) --- */
+        /* -----------------------------------------------------------
+           1. RESET & VARIABLES
+        ----------------------------------------------------------- */
         :root {
-            --bg-color: #0b0b0b;
-            --text-main: #eaeaea;
-            --text-muted: #888;
-            --accent: #D4AF37;
+            /* COLORES - PALETA "OBSIDIAN GOLD" */
+            --c-bg: #0a0a0a;
+            --c-bg-alt: #111111;
+            --c-surface: #1a1a1a;
+            --c-text-main: #f0f0f0;
+            --c-text-muted: #888888;
+            --c-accent: #D4AF37; /* Oro clásico */
+            --c-accent-light: #F4E4BC;
+            --c-error: #cf3e3e;
+            --c-success: #3ecf8e;
+            
+            /* TIPOGRAFÍA */
             --font-serif: 'Cormorant Garamond', serif;
-            --font-sans: 'Manrope', sans-serif;
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-sans: 'Montserrat', sans-serif;
+            
+            /* ESPACIADO */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --spacing-xxl: 12rem;
+            
+            /* TRANSICIONES */
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+            --ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+            --duration-fast: 0.3s;
+            --duration-slow: 0.8s;
+            
+            /* BORDES & SOMBRAS */
+            --border-light: 1px solid rgba(255,255,255,0.08);
+            --border-accent: 1px solid rgba(212, 175, 55, 0.3);
+            --shadow-card: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Cursor oculto nativo */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: var(--font-sans);
-            overflow-x: hidden;
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- UI: CURSOR PERSONALIZADO --- */
-        .cursor-dot, .cursor-circle { position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; }
-        .cursor-dot { width: 6px; height: 6px; background: white; border-radius: 50%; }
-        .cursor-circle { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5); border-radius: 50%; transition: width 0.3s, height 0.3s, background 0.3s; }
-        
-        body.hover .cursor-circle { width: 80px; height: 80px; background: white; mix-blend-mode: difference; border-color: transparent; }
-
-        /* --- UI: RUIDO CINEMATOGRÁFICO --- */
-        .noise {
-            position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9000; opacity: 0.04;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        body {
+            background-color: var(--c-bg);
+            color: var(--c-text-main);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* --- HEADER --- */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 2rem 5%; z-index: 100;
-            display: flex; justify-content: space-between; align-items: center; mix-blend-mode: difference;
+        /* -----------------------------------------------------------
+           2. TIPOGRAFÍA & UTILIDADES
+        ----------------------------------------------------------- */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-sm);
         }
-        .logo { font-family: var(--font-serif); font-size: 2rem; font-weight: 700; letter-spacing: -1px; text-decoration: none; color: white; }
-        .nav-links { display: flex; gap: 3rem; }
-        .nav-links a { text-decoration: none; color: white; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: white; transition: 0.4s var(--ease); }
-        .nav-links a:hover::after { width: 100%; }
 
-        /* --- HERO --- */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
-        .hero-content { position: relative; z-index: 10; text-align: center; }
-        
-        h1 { font-family: var(--font-serif); font-size: clamp(3rem, 8vw, 7rem); line-height: 0.9; font-weight: 300; margin-bottom: 2rem; }
-        h1 span { display: block; overflow: hidden; }
-        h1 em { font-style: italic; color: var(--accent); }
-        
-        .hero-btn {
-            display: inline-block; padding: 1rem 3rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 50px;
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; text-decoration: none; color: white;
-            transition: 0.4s var(--ease); overflow: hidden; position: relative;
+        h1 { font-size: clamp(3.5rem, 8vw, 6.5rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2.5rem, 5vw, 4rem); color: var(--c-text-main); }
+        h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+        h4 { font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; font-family: var(--font-sans); color: var(--c-accent); }
+
+        p {
+            font-size: 1rem;
+            color: var(--c-text-muted);
+            margin-bottom: var(--spacing-md);
+            max-width: 65ch;
         }
-        .hero-btn:hover { background: white; color: black; border-color: white; }
 
-        /* --- SHOWCASE (3D MOCKUP) --- */
-        .showcase { padding: 10rem 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .showcase-text h2 { font-family: var(--font-serif); font-size: 3.5rem; margin-bottom: 2rem; line-height: 1; }
-        .showcase-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 500px; line-height: 1.7; }
-        
-        .feature-list li { list-style: none; margin-bottom: 2rem; border-left: 1px solid #333; padding-left: 2rem; }
-        .feature-list h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--accent); font-family: var(--font-serif); }
+        a { text-decoration: none; color: inherit; transition: var(--duration-fast); }
+        ul { list-style: none; }
+        img, video { max-width: 100%; display: block; }
 
-        .phone-container { perspective: 1000px; display: flex; justify-content: center; }
-        .phone {
-            width: 300px; height: 600px; background: black; border-radius: 40px; border: 8px solid #222;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.6); position: relative; overflow: hidden;
-            transform: rotateY(-15deg) rotateX(5deg); transition: transform 0.1s;
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
         }
-        .phone video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- COLLECTIONS GRID --- */
-        .collections { padding: 5rem 2%; }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+        .text-center { text-align: center; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); }
+
+        /* Espaciadores */
+        .spacer-lg { height: var(--spacing-lg); }
+        .spacer-xl { height: var(--spacing-xl); }
+
+        /* -----------------------------------------------------------
+           3. COMPONENTES UI
+        ----------------------------------------------------------- */
+        /* Botones Premium */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            border: 1px solid var(--c-text-main);
+            color: var(--c-text-main);
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-fast);
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--c-text-main);
+            z-index: -1;
+            transition: width 0.4s var(--ease-out);
+        }
+
+        .btn:hover {
+            color: var(--c-bg);
+            border-color: var(--c-text-main);
+        }
+        .btn:hover::before { width: 100%; }
+
+        .btn-gold {
+            border-color: var(--c-accent);
+            color: var(--c-accent);
+        }
+        .btn-gold::before { background: var(--c-accent); }
+        .btn-gold:hover { color: var(--c-bg); }
+
+        /* Separadores */
+        .hr-line {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* -----------------------------------------------------------
+           4. HEADER & NAVEGACIÓN
+        ----------------------------------------------------------- */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            padding: 2rem 0; z-index: 1000;
+            transition: padding 0.5s var(--ease-out), background 0.5s;
+            border-bottom: 1px solid transparent;
+        }
+
+        .header.scrolled {
+            padding: 1rem 0;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: var(--border-light);
+        }
+
+        .nav-wrapper {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--c-text-main);
+            letter-spacing: -0.02em;
+        }
+        .logo span { color: var(--c-accent); }
+
+        .nav-menu { display: flex; gap: 3rem; }
+        .nav-link {
+            position: relative;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c-text-main);
+            opacity: 0.8;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--c-accent); transition: 0.3s;
+        }
+        .nav-link:hover { opacity: 1; color: var(--c-accent); }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Menú Móvil Hamburger */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .bar { width: 30px; height: 2px; background: white; transition: 0.3s; }
+
+        /* -----------------------------------------------------------
+           5. HERO SECTION (CINEMATIC)
+        ----------------------------------------------------------- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video-wrapper {
+            position: absolute; inset: 0; z-index: -1;
+        }
         
-        .card { position: relative; height: 80vh; overflow: hidden; display: block; }
-        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s var(--ease); filter: grayscale(100%); }
-        .card-overlay {
+        .hero-video {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.5; filter: grayscale(40%) contrast(1.1);
+            transform: scale(1.1);
+            animation: breathe 20s infinite alternate;
+        }
+
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(10,10,10,0.8) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--c-accent);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInDown 1s var(--ease-out);
+        }
+
+        .hero-title {
+            animation: fadeInUp 1.2s var(--ease-out) 0.2s backwards;
+        }
+        .hero-title em { font-style: italic; font-weight: 300; color: var(--c-accent-light); }
+
+        .hero-desc {
+            font-size: 1.2rem; margin: 0 auto var(--spacing-lg);
+            animation: fadeInUp 1.2s var(--ease-out) 0.4s backwards;
+        }
+
+        .hero-actions {
+            animation: fadeInUp 1.2s var(--ease-out) 0.6s backwards;
+        }
+
+        /* -----------------------------------------------------------
+           6. SECCIÓN INTRODUCCIÓN (PHILOSOPHY)
+        ----------------------------------------------------------- */
+        .philosophy { padding: var(--spacing-xxl) 0; background: var(--c-bg-alt); }
+        .philosophy-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center;
+        }
+        .philosophy-text h2 { margin-bottom: var(--spacing-md); }
+        .highlight-text {
+            font-size: 1.5rem; line-height: 1.6; color: var(--c-text-main); font-weight: 300;
+        }
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;
+        }
+        .stat-item h3 { font-size: 3rem; color: var(--c-accent); margin-bottom: 0; line-height: 1; }
+        .stat-item span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--c-text-muted); }
+
+        /* -----------------------------------------------------------
+           7. MÓVIL INTERACTIVO (CSS PURO)
+        ----------------------------------------------------------- */
+        .interactive-demo { padding: var(--spacing-xxl) 0; position: relative; }
+        .demo-grid {
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: var(--spacing-xl); align-items: center;
+        }
+
+        /* El Teléfono CSS */
+        .phone-mockup {
+            width: 350px; height: 700px; margin: 0 auto;
+            background: #000;
+            border-radius: 50px;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.7), inset 0 0 0 4px #333;
+            border: 12px solid #1a1a1a;
+            position: relative; overflow: hidden;
+        }
+        
+        /* Notch Dinámico */
+        .phone-mockup::before {
+            content: ''; position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 25px; background: #000; border-radius: 20px; z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%; height: 100%; object-fit: cover;
+            /* Filtro para integrar mejor el video */
+            filter: brightness(0.9);
+        }
+
+        /* Lista de características con iconos SVG */
+        .feature-list li {
+            display: flex; gap: 1.5rem; margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem; border-bottom: var(--border-light);
+        }
+        .feature-list li:last-child { border: none; }
+        
+        .icon-box {
+            width: 60px; height: 60px; flex-shrink: 0;
+            border: 1px solid var(--c-accent); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--c-accent);
+        }
+        .icon-box svg { width: 24px; height: 24px; fill: currentColor; }
+
+        /* -----------------------------------------------------------
+           8. COLECCIÓN DE ESTILOS (PARALLAX CARDS)
+        ----------------------------------------------------------- */
+        .collection { padding: var(--spacing-xxl) 0; background: var(--c-surface); }
+        .collection-header { text-align: center; margin-bottom: var(--spacing-xl); }
+        
+        .card-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            max-width: 1600px; margin: 0 auto;
+        }
+
+        .style-card {
+            position: relative; height: 80vh; overflow: hidden; display: block;
+            border-right: 1px solid rgba(0,0,0,0.5);
+        }
+
+        .card-bg {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1.2s var(--ease-out);
+            filter: grayscale(100%) brightness(0.7);
+        }
+
+        .card-content {
             position: absolute; bottom: 0; left: 0; width: 100%; padding: 3rem;
             background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            transform: translateY(100%); transition: 0.6s var(--ease);
+            transform: translateY(20px); transition: 0.5s; opacity: 0.8;
         }
-        .card:hover .card-img { transform: scale(1.1); filter: grayscale(0%); }
-        .card:hover .card-overlay { transform: translateY(0); }
+
+        .style-card:hover .card-bg {
+            transform: scale(1.1); filter: grayscale(0%) brightness(1);
+        }
+        .style-card:hover .card-content {
+            transform: translateY(0); opacity: 1;
+        }
+
+        .card-tag {
+            display: block; font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 0.2em; color: var(--c-accent); margin-bottom: 1rem;
+        }
+        .card-title {
+            font-size: 3rem; color: white; line-height: 1;
+        }
+
+        /* -----------------------------------------------------------
+           9. PRECIOS (TABLAS DETALLADAS)
+        ----------------------------------------------------------- */
+        .pricing { padding: var(--spacing-xxl) 0; }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-top: 4rem;
+        }
+
+        .price-card {
+            background: var(--c-bg-alt); padding: 3rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s; position: relative;
+        }
+        .price-card:hover {
+            transform: translateY(-10px); border-color: var(--c-accent);
+        }
+
+        .price-header h3 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .price-amount { font-size: 3.5rem; font-family: var(--font-serif); color: var(--c-accent); margin: 1.5rem 0; }
+        .price-amount span { font-size: 1rem; color: var(--c-text-muted); }
+
+        .price-features li {
+            margin-bottom: 1rem; color: #ccc; display: flex; align-items: center; gap: 10px;
+        }
+        .check-icon { color: var(--c-accent); font-size: 0.8rem; }
+
+        /* -----------------------------------------------------------
+           10. FAQ (ACORDEÓN)
+        ----------------------------------------------------------- */
+        .faq { padding: var(--spacing-xxl) 0; background: var(--c-bg-alt); }
+        .faq-container { max-width: 800px; margin: 0 auto; }
         
-        .card-title { font-family: var(--font-serif); font-size: 2.5rem; color: white; display: block; }
-        .card-meta { font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+        .accordion-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .accordion-header {
+            width: 100%; padding: 2rem 0; text-align: left; background: none; border: none;
+            color: white; font-size: 1.2rem; font-family: var(--font-serif); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .accordion-icon { font-size: 1.5rem; transition: 0.3s; color: var(--c-accent); }
+        .accordion-content {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+        }
+        .accordion-body { padding-bottom: 2rem; color: var(--c-text-muted); line-height: 1.8; }
+        
+        .accordion-item.active .accordion-icon { transform: rotate(45deg); }
+        .accordion-item.active .accordion-content { max-height: 200px; }
 
-        /* --- FOOTER --- */
-        footer { padding: 5rem 5%; border-top: 1px solid #222; text-align: center; }
-        .footer-logo { font-family: var(--font-serif); font-size: 5rem; color: #222; }
+        /* -----------------------------------------------------------
+           11. FOOTER
+        ----------------------------------------------------------- */
+        footer {
+            background: #050505; padding: 6rem 0 2rem; border-top: 1px solid #111;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-brand h2 { font-size: 3rem; margin-bottom: 1rem; }
+        .footer-links h4 { margin-bottom: 1.5rem; color: white; }
+        .footer-links ul li { margin-bottom: 0.8rem; }
+        .footer-links a { color: #888; font-size: 0.9rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--c-accent); padding-left: 5px; }
 
-        @media(max-width: 1024px) {
-            .showcase { grid-template-columns: 1fr; text-align: center; }
-            .feature-list li { border-left: none; border-bottom: 1px solid #333; padding-bottom: 1rem; padding-left: 0; }
-            .grid { grid-template-columns: 1fr; }
-            .card { height: 50vh; }
-            .nav-links { display: none; } /* Simplificado para este código */
+        .copyright {
+            text-align: center; padding-top: 2rem; border-top: 1px solid #111;
+            font-size: 0.8rem; color: #444;
+        }
+
+        /* -----------------------------------------------------------
+           12. ANIMACIONES
+        ----------------------------------------------------------- */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes breathe { 0% { transform: scale(1.1); } 100% { transform: scale(1.15); } }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .grid-2, .grid-3, .card-grid, .philosophy-grid, .demo-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-menu { display: none; }
+            .hamburger { display: flex; }
+            .hero-title { font-size: 3.5rem; }
+            .style-card { height: 50vh; }
+            .phone-mockup { margin-bottom: 3rem; order: -1; } /* Pone el móvil arriba en tablets */
         }
     </style>
 </head>
 <body>
-    <div class="noise"></div>
-    <div class="cursor-dot"></div>
-    <div class="cursor-circle"></div>
 
-    <header>
-        <a href="index.html" class="logo magnetic">AURA</a>
-        <nav class="nav-links">
-            <a href="botanico.html" class="magnetic">Colección</a>
-            <a href="contacto.html" class="magnetic">Studio</a>
-            <a href="contacto.html" class="magnetic">Contacto</a>
-        </nav>
-    </header>
+    <header class="header" id="mainHeader">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">AURA<span>.</span></a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#filosofia" class="nav-link">Filosofía</a></li>
+                    <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                    <li><a href="#coleccion" class="nav-link">Colección</a></li>
+                    <li><a href="#pricing" class="nav-link">Inversión</a></li>
+                </ul>
+            </nav>
 
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511285560982-1351cdeb9821">
-            <source src="https://player.vimeo.com/external/371843475.sd.mp4?s=7237457070050654779913777605133827225773&profile_id=165" type="video/mp4">
-        </video>
-        <div class="hero-content">
-            <h1>Invitaciones<br><em>Eternas</em></h1>
-            <a href="#coleccion" class="hero-btn magnetic">Descubrir Aura</a>
-        </div>
-    </section>
-
-    <section class="showcase">
-        <div class="showcase-text">
-            <h2>Más que un diseño,<br>una experiencia.</h2>
-            <p>Fusionamos la sensibilidad del diseño editorial con la potencia de la tecnología inmersiva. Tus invitados no solo reciben una invitación, entran en tu historia.</p>
-            <ul class="feature-list">
-                <li><h4>Storytelling Fluido</h4> Animaciones suaves a 60fps que guían la lectura.</li>
-                <li><h4>Logística Integrada</h4> Mapas GPS, Hoteles y Horarios en un clic.</li>
-                <li><h4>RSVP Instantáneo</h4> Confirmaciones organizadas directo a tu WhatsApp.</li>
-            </ul>
-        </div>
-        <div class="phone-container" id="phoneContainer">
-            <div class="phone" id="phone3D">
-                <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1606103920295-9a091573f160">
-                    <source src="https://player.vimeo.com/external/482862437.sd.mp4?s=90b719d33c93512b779610f4d01b7c2185635502&profile_id=165" type="video/mp4">
-                </video>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <a href="contacto.html" class="btn btn-gold" style="padding: 0.8rem 2rem;">Contacto</a>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="coleccion" class="collections">
-        <div class="section-header">
-            <span style="letter-spacing: 3px; color: var(--accent); font-size: 0.8rem; text-transform: uppercase;">Elige tu Esencia</span>
-        </div>
-        <div class="grid">
-            <a href="botanico.html" class="card magnetic">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552" class="card-img" alt="Botanico">
-                <div class="card-overlay">
-                    <span class="card-meta">Serie 01</span>
-                    <span class="card-title">Botánico</span>
+    <main>
+        <section class="hero">
+            <div class="hero-video-wrapper">
+                <div class="hero-overlay"></div>
+                <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1920">
+                    <source src="https://player.vimeo.com/external/371843475.sd.mp4?s=7237457070050654779913777605133827225773&profile_id=165" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="container hero-content">
+                <span class="hero-subtitle">EST. 2026 — DIGITAL WEDDING ATELIER</span>
+                <h1 class="hero-title">
+                    Invitaciones <br>
+                    <em>Eternas</em> & Digitales
+                </h1>
+                <p class="hero-desc">
+                    Fusionamos la sensibilidad del diseño editorial de lujo con la potencia de la tecnología web inmersiva.
+                </p>
+                <div class="hero-actions">
+                    <a href="#coleccion" class="btn">Ver Colección</a>
+                    <a href="#experiencia" class="btn btn-gold" style="margin-left: 20px; border: none;">Ver Demo <i class="fa-solid fa-play" style="font-size:0.6rem; margin-left: 10px;"></i></a>
                 </div>
-            </a>
-            <a href="minimal.html" class="card magnetic">
-                <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d" class="card-img" alt="Minimal">
-                <div class="card-overlay">
-                    <span class="card-meta">Serie 02</span>
-                    <span class="card-title">Minimal</span>
+            </div>
+        </section>
+
+        <section id="filosofia" class="philosophy">
+            <div class="container philosophy-grid">
+                <div class="philosophy-image">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800" alt="Detalle Boda" style="border-radius: 4px; opacity: 0.8;">
                 </div>
-            </a>
-            <a href="gold.html" class="card magnetic">
-                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745" class="card-img" alt="Gold">
-                <div class="card-overlay">
-                    <span class="card-meta">Serie 03</span>
-                    <span class="card-title">Gold</span>
+                <div class="philosophy-text">
+                    <h4>Nuestra Filosofía</h4>
+                    <h2>Menos Papel, <br>Más Emoción.</h2>
+                    <p class="highlight-text">
+                        Creemos que la primera impresión de tu boda no debería acabar en la basura. Transformamos la invitación tradicional en una experiencia narrativa que vive en el bolsillo de tus invitados.
+                    </p>
+                    <p>
+                        Sin descargas de Apps. Sin PDFs estáticos. Una webapp dedicada exclusivamente a celebrar vuestra unión con la elegancia que merece.
+                    </p>
+                    
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h3>100%</h3>
+                            <span>Digital</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3>0%</h3>
+                            <span>Huella Papel</span>
+                        </div>
+                        <div class="stat-item">
+                            <h3>24/7</h3>
+                            <span>Soporte</span>
+                        </div>
+                    </div>
                 </div>
-            </a>
-        </div>
-    </section>
+            </div>
+        </section>
+
+        <section id="experiencia" class="interactive-demo">
+            <div class="container demo-grid">
+                
+                <div class="demo-info">
+                    <h4>La Experiencia</h4>
+                    <h2>Tecnología Invisible</h2>
+                    <p>Diseñamos para emocionar. Cada scroll, cada transición y cada imagen están pensados para contar vuestra historia.</p>
+                    
+                    <ul class="feature-list">
+                        <li>
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                            </div>
+                            <div>
+                                <h3>Geolocalización Nativa</h3>
+                                <p>Tus invitados llegan a la ceremonia con un clic. Integración directa con Google Maps y Waze.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                            </div>
+                            <div>
+                                <h3>RSVP Inteligente</h3>
+                                <p>Olvida las hojas de excel manuales. Recibe confirmaciones estructuradas directamente en tu WhatsApp.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-box">
+                                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+                            </div>
+                            <div>
+                                <h3>Galería Inmersiva</h3>
+                                <p>Muestra tu sesión pre-boda en alta resolución, sin perder calidad y con carga ultra-rápida.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="phone-mockup">
+                        <video class="phone-screen" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1606103920295-9a091573f160">
+                            <source src="https://player.vimeo.com/external/482862437.sd.mp4?s=90b719d33c93512b779610f4d01b7c2185635502&profile_id=165" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="coleccion" class="collection">
+            <div class="container">
+                <div class="collection-header">
+                    <h4>Atelier</h4>
+                    <h2>Nuestras Series</h2>
+                    <p>Tres estéticas definidas. Infinitas posibilidades de personalización.</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <a href="botanico.html" class="style-card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" class="card-bg" alt="Estilo Botánico">
+                    <div class="card-content">
+                        <span class="card-tag">Serie 01</span>
+                        <span class="card-title">Botánico</span>
+                    </div>
+                </a>
+                <a href="minimal.html" class="style-card">
+                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=1200" class="card-bg" alt="Estilo Minimal">
+                    <div class="card-content">
+                        <span class="card-tag">Serie 02</span>
+                        <span class="card-title">Minimal</span>
+                    </div>
+                </a>
+                <a href="gold.html" class="style-card">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200" class="card-bg" alt="Estilo Gold">
+                    <div class="card-content">
+                        <span class="card-tag">Serie 03</span>
+                        <span class="card-title">Gold</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="text-center" style="margin-top: 4rem;">
+                <a href="contacto.html" class="btn">Ver Todos los Detalles</a>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <div class="text-center">
+                    <h4>Inversión</h4>
+                    <h2>Planes Simples</h2>
+                </div>
+
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <div class="price-header">
+                            <h3>Essential</h3>
+                            <p>Para bodas íntimas que buscan funcionalidad.</p>
+                        </div>
+                        <div class="price-amount">89€ <span>/ pago único</span></div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> Diseño Plantilla AURA</li>
+                            <li><span class="check-icon">✓</span> Ubicación GPS</li>
+                            <li><span class="check-icon">✓</span> RSVP WhatsApp</li>
+                            <li><span class="check-icon">✓</span> 3 Meses Online</li>
+                        </ul>
+                        <a href="contacto.html" class="btn" style="width: 100%; margin-top: 2rem;">Seleccionar</a>
+                    </div>
+
+                    <div class="price-card" style="border-color: var(--c-accent); background: linear-gradient(to bottom right, #111, #1a1a1a);">
+                        <div style="position: absolute; top: 0; right: 0; background: var(--c-accent); color: black; padding: 5px 15px; font-size: 0.7rem; font-weight: bold; text-transform: uppercase;">Recomendado</div>
+                        <div class="price-header">
+                            <h3>Signature</h3>
+                            <p>La experiencia completa sin límites.</p>
+                        </div>
+                        <div class="price-amount" style="color:white">159€ <span>/ pago único</span></div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> <strong>Todo lo de Essential</strong></li>
+                            <li><span class="check-icon">✓</span> Galería Fotos HD (Ilimitada)</li>
+                            <li><span class="check-icon">✓</span> Sección "Nuestra Historia"</li>
+                            <li><span class="check-icon">✓</span> Cuenta Atrás Animada</li>
+                            <li><span class="check-icon">✓</span> <strong>1 Año Online</strong></li>
+                        </ul>
+                        <a href="contacto.html" class="btn btn-gold" style="width: 100%; margin-top: 2rem;">Seleccionar</a>
+                    </div>
+
+                    <div class="price-card">
+                        <div class="price-header">
+                            <h3>Bespoke</h3>
+                            <p>Diseño 100% a medida desde cero.</p>
+                        </div>
+                        <div class="price-amount">299€ <span>/ desde</span></div>
+                        <ul class="price-features">
+                            <li><span class="check-icon">✓</span> Diseño exclusivo único</li>
+                            <li><span class="check-icon">✓</span> Dominio propio (.com)</li>
+                            <li><span class="check-icon">✓</span> Soporte Prioritario</li>
+                            <li><span class="check-icon">✓</span> Idiomas múltiples</li>
+                        </ul>
+                        <a href="contacto.html" class="btn" style="width: 100%; margin-top: 2rem;">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container faq-container">
+                <h2 class="text-center" style="margin-bottom: 3rem;">Preguntas Frecuentes</h2>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            ¿Cuánto tardáis en entregar la invitación?
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Nuestro tiempo de entrega estándar para las colecciones Essential y Signature es de 5 a 7 días laborables una vez recibimos todo vuestro contenido (fotos y textos). Para diseños Bespoke (a medida), el proceso creativo suele durar entre 2 y 3 semanas.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            ¿Mis invitados necesitan descargar una App?
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Absolutamente no. Esa es la magia de AURA. Nuestras invitaciones funcionan como una página web normal, accesible desde cualquier navegador (Chrome, Safari, etc.) en cualquier dispositivo, pero con la fluidez y belleza de una App nativa.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            ¿Podemos hacer cambios después de enviarla?
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="accordion-body">
+                                Sí. A diferencia del papel, lo digital es vivo. Si hay un cambio de hora o ubicación de última hora, lo actualizamos al instante y todos vuestros invitados verán la información correcta sin necesidad de reenviar nada.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-logo">AURA</div>
-        <p style="color: #444; margin-top: 1rem;">© 2026 Aura Digital Suites.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>AURA.</h2>
+                    <p>Elevando el estándar de las invitaciones de boda digitales hacia el arte y la sostenibilidad.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Estudio</h4>
+                    <ul>
+                        <li><a href="#filosofia">Filosofía</a></li>
+                        <li><a href="#coleccion">Colección</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="#">Términos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Social</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">Vimeo</a></li>
+                        <li><a href="#">Behance</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>hola@aura.com</li>
+                        <li>+34 912 345 678</li>
+                        <li>Madrid, España</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2026 Aura Digital Wedding Suites. All rights reserved. Design by AURA.
+            </div>
+        </div>
     </footer>
 
     <script>
-        // CURSOR
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorCircle = document.querySelector('.cursor-circle');
-        const magnetics = document.querySelectorAll('.magnetic');
-
-        window.addEventListener('mousemove', e => {
-            cursorDot.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
+        document.addEventListener('DOMContentLoaded', () => {
             
-            cursorCircle.animate({
-                top: e.clientY + 'px',
-                left: e.clientX + 'px'
-            }, { duration: 500, fill: "forwards" });
-        });
+            // 1. HEADER SCROLL EFFECT
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
 
-        magnetics.forEach(btn => {
-            btn.addEventListener('mouseenter', () => document.body.classList.add('hover'));
-            btn.addEventListener('mouseleave', () => document.body.classList.remove('hover'));
-        });
+            // 2. ACCORDION LOGIC
+            const accordions = document.querySelectorAll('.accordion-header');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    const item = this.parentElement;
+                    const content = this.nextElementSibling;
+                    
+                    // Close others
+                    document.querySelectorAll('.accordion-item').forEach(other => {
+                        if (other !== item) {
+                            other.classList.remove('active');
+                            other.querySelector('.accordion-content').style.maxHeight = null;
+                            other.querySelector('.accordion-icon').textContent = '+';
+                            other.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
 
-        // 3D PHONE EFFECT
-        const container = document.getElementById('phoneContainer');
-        const phone = document.getElementById('phone3D');
+                    // Toggle current
+                    item.classList.toggle('active');
+                    if (item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        this.querySelector('.accordion-icon').style.transform = 'rotate(45deg)';
+                    } else {
+                        content.style.maxHeight = null;
+                        this.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
 
-        container.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            phone.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-        
-        container.addEventListener('mouseleave', () => {
-            phone.style.transform = `rotateY(-15deg) rotateX(5deg)`;
+            // 3. INTERSECTION OBSERVER FOR ANIMATIONS
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Apply animation to sections
+            document.querySelectorAll('.philosophy-text, .demo-info, .price-card').forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s ease-out';
+                observer.observe(el);
+            });
         });
     </script>
 </body>
