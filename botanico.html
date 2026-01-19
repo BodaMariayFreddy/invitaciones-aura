@@ -3,25 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>AURA | Botánico</title> 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { margin: 0; font-family: 'Lato', sans-serif; display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
-        .img { background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200') center/cover; }
-        .txt { background: #EAEFEA; color: #2D3A31; display: flex; flex-direction: column; justify-content: center; padding: 10%; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: #4A6741; margin-bottom: 1rem; }
-        a.back { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #4A6741; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
-        a.btn { background: #4A6741; color: white; padding: 15px 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; width: fit-content; margin-top: 2rem; }
-        @media(max-width:768px){ body{grid-template-columns: 1fr;} .img{height:40vh;} }
+        /* CONFIG BOTÁNICO */
+        :root { --bg: #F0F2EF; --text: #2F3E32; --accent: #4A6741; }
+        body { margin: 0; font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        
+        nav { padding: 2rem; }
+        a.back { text-decoration: none; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; }
+        
+        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+        .hero-img { width: 100%; height: 600px; object-fit: cover; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        
+        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); margin-bottom: 1rem; line-height: 1; }
+        p.desc { font-size: 1.1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 2rem; }
+        
+        .details { margin-top: 4rem; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 4rem; }
+        .details h3 { font-family: 'Playfair Display', serif; margin-bottom: 2rem; font-size: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .feat i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+        
+        .btn { padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block; }
+        
+        @media(max-width: 768px) { .hero { grid-template-columns: 1fr; } .hero-img { height: 400px; } .grid-3 { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back">← Volver</a>
-    <div class="img"></div>
-    <div class="txt">
-        <span style="text-transform:uppercase; letter-spacing:3px; font-size:0.8rem;">Serie 01</span>
-        <h1>Botánico Silvestre</h1>
-        <p>Inspirado en la naturaleza salvaje. Tonos eucalipto, papel orgánico y frescura.</p>
-        <a href="contacto.html" class="btn">Elegir Diseño</a>
+    <nav><a href="index.html" class="back">← Volver</a></nav>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="txt">
+                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.6;">Serie 01</span>
+                <h1>Botánico Silvestre</h1>
+                <p class="desc">Inspirado en los jardines ingleses. Una paleta de colores eucalipto y tierra, ideal para bodas al aire libre.</p>
+                <a href="contacto.html" class="btn">Solicitar Diseño</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" class="hero-img">
+        </div>
+
+        <div class="details">
+            <h3>Detalles de la Colección</h3>
+            <div class="grid-3">
+                <div class="feat">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h4>Orgánico</h4>
+                    <p>Texturas que imitan papel artesanal y acuarelas naturales.</p>
+                </div>
+                <div class="feat">
+                    <i class="fa-solid fa-font"></i>
+                    <h4>Tipografía</h4>
+                    <p>Serif clásica combinada con caligrafía manual fluida.</p>
+                </div>
+                <div class="feat">
+                    <i class="fa-solid fa-palette"></i>
+                    <h4>Paleta</h4>
+                    <p>Verde Salvia, Blanco Roto, Tierra y Oro Viejo.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
