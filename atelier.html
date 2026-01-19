@@ -2,44 +2,43 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>AURA | El Atelier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <title>AURA | Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body { background: #FDFBF7; color: #1A1A1A; font-family: 'Lato', sans-serif; margin: 0; line-height: 1.8; }
+        body { background: #FDFBF7; color: #1A1A1A; font-family: 'Montserrat', sans-serif; margin: 0; line-height: 1.8; }
         .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
         nav { padding: 2rem; text-align: center; }
-        a.back { text-decoration: none; color: #999; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
+        a.back { color: #999; text-decoration: none; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; }
         
-        h1 { font-family: 'Cinzel', serif; font-size: 3rem; text-align: center; margin-bottom: 2rem; }
-        p.lead { font-size: 1.2rem; text-align: center; color: #666; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        h1 { font-family: 'Cinzel', serif; font-size: 3rem; text-align: center; margin-bottom: 1rem; }
+        p.lead { font-size: 1.2rem; text-align: center; color: #666; max-width: 600px; margin: 0 auto 4rem; }
         
-        .img-feat { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; }
+        .img-hero { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 4rem; }
         
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         h3 { font-family: 'Cinzel', serif; color: #C5A059; margin-bottom: 1rem; }
         
-        footer { border-top: 1px solid #eee; text-align: center; padding: 2rem; margin-top: 4rem; font-size: 0.8rem; color: #999; }
+        @media(max-width:768px){ .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" class="back">← Volver al Inicio</a></nav>
+    <nav><a href="index.html">← Volver al Inicio</a></nav>
     <div class="container">
         <h1>El Atelier</h1>
-        <p class="lead">Donde la artesanía tradicional del papel se encuentra con la innovación digital. Diseñamos reliquias modernas.</p>
+        <p class="lead">Donde la artesanía tradicional del papel se encuentra con la innovación digital.</p>
         
-        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200" class="img-feat" alt="Estudio">
+        <img src="https://images.pexels.com/photos/7680216/pexels-photo-7680216.jpeg?auto=compress&cs=tinysrgb&w=1200" class="img-hero" alt="Studio">
         
         <div class="grid">
             <div>
                 <h3>Nuestra Misión</h3>
-                <p>Nacimos para eliminar el desperdicio de papel sin sacrificar la elegancia. Creemos que una invitación digital puede ser tan emocionante y lujosa como una impresa en algodón.</p>
+                <p>Eliminar el desperdicio de papel sin sacrificar la elegancia. Creemos que una invitación digital puede ser tan emocionante y lujosa como una impresa en algodón.</p>
             </div>
             <div>
                 <h3>El Proceso</h3>
-                <p>Trabajamos "Boutique". Aceptamos un número limitado de parejas al mes para dedicar el tiempo necesario a cada píxel, cada animación y cada detalle de vuestra historia.</p>
+                <p>Trabajamos "Boutique". Aceptamos un número limitado de parejas al mes para dedicar el tiempo necesario a cada píxel y cada animación.</p>
             </div>
         </div>
     </div>
-    <footer>© 2026 Aura Atelier.</footer>
 </body>
 </html>
