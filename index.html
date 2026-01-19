@@ -3,540 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AURA - Atelier Digital de Bodas. Invitaciones interactivas de alta costura.">
-    <meta name="author" content="Aura Suites">
-    <meta name="theme-color" content="#FDFBF7">
-    
-    <title>AURA | Ivory & Gold Edition</title>
+    <meta name="description" content="AURA - Invitaciones de boda digitales de alta costura. Diseño editorial y tecnología inmersiva.">
+    <title>AURA | Digital Wedding Atelier</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* -----------------------------------------------------------------
-           1. CORE VARIABLES & TOKENS (SISTEMA DE DISEÑO IVORY)
+           CORE VARIABLES (IVORY PRESTIGE THEME)
         ----------------------------------------------------------------- */
         :root {
-            /* PALETA DE COLORES: IVORY & GOLD */
-            --c-bg: #FDFBF7;           /* Crema Nupcial */
-            --c-bg-alt: #F4F1EA;       /* Beige Arena */
-            --c-surface: #FFFFFF;      /* Blanco Puro */
-            
-            --c-text-primary: #1A1A1A; /* Charcoal (No negro puro) */
-            --c-text-secondary: #5A5A5A;
-            --c-text-light: #888888;
-            
-            --c-accent: #C5A059;       /* Oro Mate */
-            --c-accent-dark: #9E7D3E;
-            --c-accent-light: #E6D2A8;
-            
-            --c-border: rgba(0,0,0,0.06);
-            --c-border-dark: rgba(0,0,0,0.15);
-
-            /* TIPOGRAFÍA */
+            --c-bg: #FDFBF7;
+            --c-bg-alt: #F4F1EA;
+            --c-text: #1A1A1A;
+            --c-accent: #C5A059;
+            --c-line: rgba(0,0,0,0.08);
             --f-display: 'Cinzel', serif;
             --f-serif: 'Playfair Display', serif;
             --f-sans: 'Lato', sans-serif;
-
-            /* ESCALA TIPOGRÁFICA FLUIDA */
-            --size-display: clamp(3rem, 7vw, 6rem);
-            --size-h1: clamp(2.5rem, 5vw, 4.5rem);
-            --size-h2: clamp(2rem, 4vw, 3.5rem);
-            --size-h3: clamp(1.25rem, 2.5vw, 2rem);
-            --size-body: clamp(0.95rem, 1vw, 1.1rem);
-
-            /* ESPACIADO */
-            --spacing-gutter: 2rem;
-            --spacing-section: clamp(6rem, 12vh, 10rem);
-            --container-width: 1500px;
-
-            /* ANIMACIONES */
-            --ease-elegant: cubic-bezier(0.77, 0, 0.175, 1);
-            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --anim-duration: 1s;
+            --ease: cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        /* -----------------------------------------------------------------
-           2. RESET & BASE STYLES
-        ----------------------------------------------------------------- */
+        /* RESET & BASE */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            background-color: var(--c-bg);
-            color: var(--c-text-primary);
-            font-family: var(--f-sans);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* Textura de papel sutil */
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { background: var(--c-bg); color: var(--c-text); font-family: var(--f-sans); line-height: 1.7; overflow-x: hidden; }
+        
+        /* TEXTURA PAPEL */
         body::before {
-            content: "";
-            position: fixed; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 9999;
+            content: ""; position: fixed; inset: 0; opacity: 0.04; pointer-events: none; z-index: 9999;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* Utilidades de Texto */
-        h1, h2, h3, h4 { font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; color: var(--c-text-primary); }
-        
-        .font-display { font-family: var(--f-display); }
-        .font-serif { font-family: var(--f-serif); font-style: italic; }
+        /* UTILIDADES */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+        h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .uppercase { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; font-weight: 700; }
         .text-accent { color: var(--c-accent); }
-        .text-center { text-align: center; }
-        .uppercase { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.8rem; font-weight: 600; }
-
-        p { margin-bottom: 2rem; color: var(--c-text-secondary); max-width: 700px; }
-
-        .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 5%; }
-
-        /* -----------------------------------------------------------------
-           3. UI COMPONENTS (BOTONES, INPUTS)
-        ----------------------------------------------------------------- */
-        /* Botón Lujo */
         .btn {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: transparent;
-            border: 1px solid var(--c-text-primary);
-            color: var(--c-text-primary);
-            font-family: var(--f-display);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            text-decoration: none;
+            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--c-text);
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+            transition: 0.4s; position: relative; overflow: hidden; background: transparent; color: var(--c-text);
         }
-
-        .btn::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
-            background: var(--c-text-primary); z-index: -1; transition: 0.4s var(--ease-elegant);
+        .btn:hover { background: var(--c-text); color: var(--c-bg); }
+        
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 2rem 0; z-index: 1000; transition: 0.5s;
         }
-
-        .btn:hover { color: var(--c-bg); }
-        .btn:hover::after { width: 100%; }
-
-        .btn-gold {
-            border-color: var(--c-accent);
-            color: var(--c-accent);
+        header.scrolled {
+            padding: 1rem 0; background: rgba(253, 251, 247, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--c-line);
         }
-        .btn-gold::after { background: var(--c-accent); }
-        .btn-gold:hover { color: white; }
+        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-display); font-size: 2rem; font-weight: 600; }
+        .menu { display: flex; gap: 3rem; }
+        .menu a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; position: relative; }
+        .menu a::after { content:''; position: absolute; bottom:-5px; left:0; width:0; height:1px; background:var(--c-accent); transition:0.3s; }
+        .menu a:hover::after { width:100%; }
 
-        /* -----------------------------------------------------------------
-           4. HEADER & NAV
-        ----------------------------------------------------------------- */
-        .header {
-            position: fixed; top: 0; left: 0; width: 100%;
-            padding: 2.5rem 0; z-index: 1000;
-            transition: 0.5s var(--ease-elegant);
-        }
-        .header.scrolled {
-            padding: 1rem 0;
-            background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--c-border);
-            box-shadow: 0 5px 30px rgba(0,0,0,0.02);
-        }
-
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-
-        .logo {
-            font-family: var(--f-display);
-            font-size: 1.8rem;
-            letter-spacing: 0.05em;
-            color: var(--c-text-primary);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .nav-list { display: flex; gap: 3rem; list-style: none; }
-        .nav-item a {
-            text-decoration: none; color: var(--c-text-primary);
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            position: relative; transition: 0.3s;
-        }
-        .nav-item a::before {
-            content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 1px; background: var(--c-accent); transition: 0.3s;
-        }
-        .nav-item a:hover { color: var(--c-accent); }
-        .nav-item a:hover::before { width: 100%; }
-
-        /* -----------------------------------------------------------------
-           5. HERO SECTION (PARALLAX + CREAM THEME)
-        ----------------------------------------------------------------- */
+        /* HERO */
         .hero {
-            padding-top: 15vh;
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
+            height: 100vh; position: relative; display: flex; align-items: center;
+            background: url('https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1800') center/cover;
         }
-
-        .hero-bg-text {
-            position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
-            font-family: var(--f-display); font-size: 20vw; color: rgba(0,0,0,0.02);
-            pointer-events: none; white-space: nowrap; z-index: -1;
-        }
-
-        .hero-grid {
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: center;
-        }
-
+        .hero::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
         .hero-content {
-            opacity: 0; transform: translateY(50px);
-            animation: fadeInUp 1s var(--ease-elegant) forwards 0.2s;
+            position: relative; z-index: 10; text-align: center; color: white; width: 100%;
+            padding-top: 5rem;
         }
-        
-        .hero-heading {
-            font-family: var(--f-display); font-size: var(--size-display);
-            line-height: 1; margin-bottom: 2rem;
-        }
-        .hero-heading em {
-            font-family: var(--f-serif); color: var(--c-accent); font-weight: 400; display: block;
-        }
+        .hero h1 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 2rem; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem; font-family: var(--f-serif); font-style: italic; opacity: 0.9; }
+        .btn-hero { border-color: white; color: white; }
+        .btn-hero:hover { background: white; color: black; }
 
-        .hero-image-wrapper {
-            position: relative; height: 70vh; width: 100%; overflow: hidden;
-            border-radius: 200px 200px 0 0; /* Arco elegante */
-            opacity: 0; transform: translateY(50px);
-            animation: fadeInUp 1s var(--ease-elegant) forwards 0.5s;
-        }
-        
-        .hero-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transform: scale(1.1); transition: transform 2s;
-        }
-        .hero:hover .hero-img { transform: scale(1.0); }
-
-        /* -----------------------------------------------------------------
-           6. SECCIÓN "EL MÓVIL" (IFRAME INTERACTIVO - NO VIDEO)
-        ----------------------------------------------------------------- */
-        .showcase {
-            padding: var(--spacing-section) 0;
-            background: var(--c-bg-alt);
-            position: relative;
-        }
-
-        .showcase-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
-        }
-
-        /* MOCKUP DEL TELÉFONO */
+        /* DEMO PHONE */
+        .showcase { padding: 8rem 0; background: var(--c-bg-alt); }
+        .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
         .phone-mockup {
-            width: 320px; height: 650px; margin: 0 auto;
-            background: #fff; border-radius: 45px;
-            box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
-            border: 12px solid #e0e0e0; /* Marco claro */
-            position: relative; overflow: hidden;
+            width: 300px; height: 600px; margin: 0 auto; background: #fff;
+            border-radius: 45px; border: 10px solid #e5e5e5; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
         }
+        .phone-frame { width: 100%; height: 100%; border: none; }
 
-        /* Botón de encendido (detalle) */
-        .phone-mockup::after {
-            content: ''; position: absolute; right: -15px; top: 100px; width: 5px; height: 50px; background: #ccc;
+        /* COLLECTION GRID (5 STYLES) */
+        .collection { padding: 8rem 0; }
+        .col-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-top: 4rem; }
+        
+        /* Layout Masonry Manual */
+        .card { display: block; position: relative; overflow: hidden; text-decoration: none; height: 500px; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        .card:hover img { transform: scale(1.1); }
+        .card-info {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white; transform: translateY(20px); opacity: 0; transition: 0.5s;
         }
+        .card:hover .card-info { transform: translateY(0); opacity: 1; }
+        
+        /* Grid Spans */
+        .c-1 { grid-column: span 6; } /* Botanico */
+        .c-2 { grid-column: span 6; } /* Minimal */
+        .c-3 { grid-column: span 4; height: 400px; } /* Gold */
+        .c-4 { grid-column: span 4; height: 400px; } /* Romantico */
+        .c-5 { grid-column: span 4; height: 400px; } /* Boho */
 
-        /* AQUÍ LA MAGIA: UN IFRAME EN LUGAR DE UN VIDEO */
-        .phone-frame {
-            width: 100%; height: 100%; border: none; background: #fff;
-        }
+        /* FOOTER */
+        footer { background: #111; color: white; padding: 5rem 0; text-align: center; }
+        .f-links a { color: #888; margin: 0 1rem; font-size: 0.8rem; text-transform: uppercase; }
+        .f-links a:hover { color: var(--c-accent); }
 
-        .feature-block {
-            padding: 2rem; border-top: 1px solid rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-        .feature-block:hover { background: white; padding-left: 3rem; border-left: 3px solid var(--c-accent); }
-        .feature-icon { font-size: 1.5rem; color: var(--c-accent); margin-bottom: 1rem; }
-
-        /* -----------------------------------------------------------------
-           7. COLECCIÓN (GRID ELEGANTE)
-        ----------------------------------------------------------------- */
-        .collection { padding: var(--spacing-section) 0; }
-        .collection-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .card {
-            display: block; position: relative; text-decoration: none; group;
-        }
-        .card-img-container {
-            height: 600px; overflow: hidden; position: relative; margin-bottom: 1.5rem;
-        }
-        .card-img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1s ease;
-        }
-        .card:hover .card-img { transform: scale(1.05); }
-
-        .card-meta { text-align: center; }
-        .card-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--c-text-light); }
-        .card-title { font-family: var(--f-display); font-size: 2rem; margin: 0.5rem 0; color: var(--c-text-primary); transition: 0.3s; }
-        .card:hover .card-title { color: var(--c-accent); }
-
-        /* -----------------------------------------------------------------
-           8. TESTIMONIOS (SLIDER CSS)
-        ----------------------------------------------------------------- */
-        .reviews { padding: var(--spacing-section) 0; background: var(--c-surface); text-align: center; }
-        .review-card { max-width: 800px; margin: 0 auto; padding: 2rem; }
-        .stars { color: var(--c-accent); font-size: 1.2rem; margin-bottom: 1.5rem; }
-        .quote { font-family: var(--f-serif); font-size: 2rem; line-height: 1.4; font-style: italic; color: var(--c-text-primary); }
-        .author { margin-top: 2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
-
-        /* -----------------------------------------------------------------
-           9. FOOTER
-        ----------------------------------------------------------------- */
-        footer {
-            background: #111; color: #fff; padding: 5rem 0;
-            text-align: center;
-        }
-        .footer-logo { font-family: var(--f-display); font-size: 3rem; margin-bottom: 2rem; display: block; }
-        .footer-nav a { color: #888; margin: 0 1rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; }
-        .footer-nav a:hover { color: var(--c-accent); }
-
-        /* Animaciones */
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .hero-grid, .showcase-grid { grid-template-columns: 1fr; }
-            .hero-image-wrapper { height: 50vh; order: -1; }
-            .collection-grid { grid-template-columns: 1fr; }
-            .nav-list { display: none; } /* En esta demo no incluyo la lógica del menú móvil para no saturar el archivo */
-            .phone-mockup { margin: 0 auto; }
+        @media(max-width: 1024px) {
+            .showcase-grid { grid-template-columns: 1fr; }
+            .col-grid { display: flex; flex-direction: column; }
+            .card { height: 400px; }
+            .menu { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header" id="header">
-        <div class="container nav-inner">
-            <a href="#" class="logo">AURA.</a>
-            
-            <nav>
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#filosofia">Concepto</a></li>
-                    <li class="nav-item"><a href="#experiencia">La Experiencia</a></li>
-                    <li class="nav-item"><a href="#coleccion">Colección</a></li>
-                </ul>
+    <header id="header">
+        <div class="container nav-wrap">
+            <a href="index.html" class="logo">AURA.</a>
+            <nav class="menu">
+                <a href="atelier.html">El Atelier</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#coleccion">Colección</a>
+                <a href="faq.html">Ayuda</a>
             </nav>
-
-            <a href="contacto.html" class="btn btn-gold">Contacto</a>
+            <a href="contacto.html" class="btn">Empezar</a>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-bg-text">WEDDING SUITES</div>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="uppercase text-accent">Digital Wedding Atelier</span>
+            <h1>Invitaciones<br><em>Eternas</em></h1>
+            <p>La elegancia del papel, elevada por la tecnología. Crea una experiencia inolvidable para tus invitados.</p>
+            <a href="#coleccion" class="btn btn-hero">Ver Colección</a>
+        </div>
+    </section>
+
+    <section id="experiencia" class="showcase">
+        <div class="container showcase-grid">
+            <div class="info">
+                <span class="uppercase text-accent">Interactive Demo</span>
+                <h2 style="font-size: 3rem; margin: 1rem 0;">Prueba la Magia</h2>
+                <p>Interactúa con el teléfono. Haz scroll, confirma asistencia y explora el mapa. Es una invitación real, viva y fluida.</p>
+                <ul style="margin-top: 2rem; list-style: none;">
+                    <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check text-accent"></i> RSVP Integrado</li>
+                    <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check text-accent"></i> Google Maps Nativo</li>
+                    <li><i class="fa-solid fa-check text-accent"></i> Galería HD</li>
+                </ul>
+            </div>
+            <div class="phone-mockup">
+                <iframe id="demoFrame" class="phone-frame"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="coleccion" class="collection">
+        <div class="container">
+            <div class="text-center">
+                <span class="uppercase text-accent">Nuestras Series</span>
+                <h2 style="font-size: 3rem;">La Colección 2026</h2>
+            </div>
             
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <span class="uppercase text-accent" style="display:block; margin-bottom: 20px;">Est. 2026 — Atelier Digital</span>
-                    <h1 class="hero-heading">
-                        Invitaciones <br>
-                        <em>Eternas & Vivas</em>
-                    </h1>
-                    <p>
-                        Transformamos el anuncio de tu boda en una experiencia inmersiva. 
-                        Sin papel. Sin descargas. Solo elegancia interactiva.
-                    </p>
-                    <div style="margin-top: 3rem;">
-                        <a href="#coleccion" class="btn">Ver Colección</a>
+            <div class="col-grid">
+                <a href="botanico.html" class="card c-1">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Botánico">
+                    <div class="card-info">
+                        <h3>Botánico</h3>
+                        <span class="uppercase text-accent">Ver Diseño</span>
                     </div>
-                </div>
-
-                <div class="hero-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1200" alt="Boda Elegante" class="hero-img">
-                </div>
-            </div>
-        </section>
-
-        <section id="experiencia" class="showcase">
-            <div class="container showcase-grid">
+                </a>
                 
-                <div class="info-col">
-                    <span class="uppercase text-accent">Interactive Demo</span>
-                    <h2 class="font-display" style="font-size: 3rem; margin: 1rem 0;">Pruébalo ahora.</h2>
-                    <p>
-                        Interactúa con el teléfono de la derecha. Es una invitación real. 
-                        Haz scroll, pulsa los botones y siente la fluidez.
-                    </p>
-
-                    <div class="feature-block">
-                        <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                        <h3>Diseño Vivo</h3>
-                        <p>Cada elemento está pensado para guiar al invitado a través de vuestra historia.</p>
+                <a href="minimal.html" class="card c-2">
+                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=1200" alt="Minimal">
+                    <div class="card-info">
+                        <h3>Minimal</h3>
+                        <span class="uppercase text-accent">Ver Diseño</span>
                     </div>
-                    <div class="feature-block">
-                        <div class="feature-icon"><i class="fa-regular fa-map"></i></div>
-                        <h3>Logística 2.0</h3>
-                        <p>Mapas interactivos. El invitado llega a la ceremonia con un solo clic.</p>
+                </a>
+
+                <a href="gold.html" class="card c-3">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" alt="Gold">
+                    <div class="card-info">
+                        <h3>Gold Luxury</h3>
+                        <span class="uppercase text-accent">Ver Diseño</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="phone-col">
-                    <div class="phone-mockup">
-                        <iframe id="demo-frame" class="phone-frame" title="Invitación Demo"></iframe>
+                <a href="romantico.html" class="card c-4">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=800" alt="Romántico">
+                    <div class="card-info">
+                        <h3>Romántico</h3>
+                        <span class="uppercase text-accent">Ver Diseño</span>
                     </div>
-                </div>
+                </a>
 
+                <a href="boho.html" class="card c-5">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" alt="Boho">
+                    <div class="card-info">
+                        <h3>Boho Chic</h3>
+                        <span class="uppercase text-accent">Ver Diseño</span>
+                    </div>
+                </a>
             </div>
-        </section>
-
-        <section id="coleccion" class="collection">
-            <div class="container">
-                <div class="text-center" style="margin-bottom: 4rem;">
-                    <span class="uppercase text-accent">Nuestras Series</span>
-                    <h2 class="font-display" style="font-size: 3.5rem;">The Collection</h2>
-                </div>
-
-                <div class="collection-grid">
-                    <a href="botanico.html" class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" class="card-img" alt="Botánico">
-                        </div>
-                        <div class="card-meta">
-                            <span class="card-tag">Serie 01</span>
-                            <h3 class="card-title">Botánico</h3>
-                            <span class="uppercase" style="font-size: 0.7rem; border-bottom: 1px solid #000;">Ver Detalles</span>
-                        </div>
-                    </a>
-                    
-                    <a href="minimal.html" class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=800" class="card-img" alt="Minimal">
-                        </div>
-                        <div class="card-meta">
-                            <span class="card-tag">Serie 02</span>
-                            <h3 class="card-title">Minimal</h3>
-                            <span class="uppercase" style="font-size: 0.7rem; border-bottom: 1px solid #000;">Ver Detalles</span>
-                        </div>
-                    </a>
-
-                    <a href="gold.html" class="card">
-                        <div class="card-img-container">
-                            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" class="card-img" alt="Gold">
-                        </div>
-                        <div class="card-meta">
-                            <span class="card-tag">Serie 03</span>
-                            <h3 class="card-title">Gold</h3>
-                            <span class="uppercase" style="font-size: 0.7rem; border-bottom: 1px solid #000;">Ver Detalles</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="reviews">
-            <div class="container">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="quote">
-                        "La mejor inversión de la boda. Nuestros invitados quedaron alucinados con la elegancia de la invitación web. El RSVP por WhatsApp nos ahorró horas de trabajo."
-                    </p>
-                    <div class="author">— Ana & Carlos, Madrid</div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
-            <span class="footer-logo">AURA.</span>
-            <div class="footer-nav">
-                <a href="#">Instagram</a>
-                <a href="#">Pinterest</a>
+            <h2 class="logo" style="color:white; font-size: 3rem;">AURA.</h2>
+            <div class="f-links" style="margin: 2rem 0;">
+                <a href="atelier.html">Nosotros</a>
+                <a href="faq.html">Ayuda</a>
                 <a href="contacto.html">Contacto</a>
             </div>
-            <p style="margin-top: 3rem; color: #555; font-size: 0.8rem;">© 2026 Aura Digital Suites.</p>
+            <p style="font-size: 0.8rem; color: #555;">© 2026 Aura Digital Suites.</p>
         </div>
     </footer>
 
     <script>
-        // 1. INYECTAR LA MINI-INVITACIÓN EN EL IFRAME (¡El Truco!)
-        // Esto crea una web dentro de la web sin necesitar archivos externos.
-        const frame = document.getElementById('demo-frame');
-        const demoContent = `
+        // HEADER SCROLL
+        window.addEventListener('scroll', () => {
+            const h = document.getElementById('header');
+            window.scrollY > 50 ? h.classList.add('scrolled') : h.classList.remove('scrolled');
+        });
+
+        // DEMO INJECTION (Para que cargue seguro)
+        const frame = document.getElementById('demoFrame');
+        const content = `
             <!DOCTYPE html>
-            <html style="overflow-x:hidden;">
-            <head>
-                <style>
-                    body { margin:0; font-family: sans-serif; background: #fff; color: #333; text-align: center; }
-                    .cover { height: 100vh; background: url('https://images.unsplash.com/photo-1522673607200-164530389393?q=80&w=600') center/cover; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column; position: relative; }
-                    .cover::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
-                    h1 { position: relative; font-family: 'Times New Roman', serif; font-size: 3rem; margin: 0; z-index: 2; }
-                    .date { position: relative; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; z-index: 2; }
-                    .content { padding: 40px 20px; }
-                    .btn { display: inline-block; padding: 15px 30px; background: #C5A059; color: white; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-top: 20px; border-radius: 2px; }
-                    .map { width: 100%; height: 200px; background: #eee; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #999; }
-                </style>
-            </head>
-            <body>
-                <div class="cover">
-                    <div class="date">24 . 08 . 2026</div>
-                    <h1>Ana &<br>David</h1>
-                    <div class="date" style="margin-top:20px; font-size: 0.7rem;">DESLIZA</div>
-                </div>
-                <div class="content">
-                    <h2 style="font-family: 'Times New Roman'; font-size: 2rem;">La Ceremonia</h2>
-                    <p style="line-height: 1.6; font-size: 0.9rem; color: #666;">
-                        Nos encantaría que nos acompañaseis en este día tan especial.
-                        Celebraremos el amor, la vida y la amistad.
-                    </p>
-                    <div class="map">Mapa Ubicación</div>
-                    <a href="#" class="btn">Confirmar Asistencia</a>
-                    <br><br><br>
-                    <p style="font-size: 0.7rem; color: #ccc;">AURA DEMO</p>
+            <html style="overflow:hidden;">
+            <body style="margin:0; font-family:serif; background:#f9f9f9; text-align:center;">
+                <div style="height:100vh; display:flex; flex-direction:column; justify-content:center; background:url('https://images.unsplash.com/photo-1522673607200-164530389393?q=80&w=400') center/cover;">
+                    <div style="background:rgba(255,255,255,0.8); padding:20px; margin:20px;">
+                        <h2 style="margin:0; font-size:2rem;">Ana & Juan</h2>
+                        <p style="margin:10px 0; font-size:0.8rem; letter-spacing:2px;">24 . 08 . 2026</p>
+                        <button style="padding:10px 20px; background:#C5A059; border:none; color:white; text-transform:uppercase; font-size:0.7rem; margin-top:10px;">Confirmar</button>
+                    </div>
                 </div>
             </body>
             </html>
         `;
-        
-        // Escribir el contenido en el iframe
-        const doc = frame.contentWindow.document;
-        doc.open();
-        doc.write(demoContent);
-        doc.close();
-
-
-        // 2. EFECTO SCROLL HEADER
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if(window.scrollY > 50) header.classList.add('scrolled');
-            else header.classList.remove('scrolled');
-        });
-
-        // 3. SCROLL REVEAL (Aparición suave)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        document.querySelectorAll('.hero-content, .card').forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease-out';
-            observer.observe(el);
-        });
+        frame.contentWindow.document.open();
+        frame.contentWindow.document.write(content);
+        frame.contentWindow.document.close();
     </script>
 </body>
 </html>
