@@ -3,55 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Gold</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>AURA | Colección Gold</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
+        /* TEMA GOLD: Negro Profundo y Oro */
         :root {
-            --bg: #0b0b0b; --text: #b0b0b0; --accent: #D4AF37;
+            --bg: #0B0B0B;
+            --text: #C0C0C0;
+            --accent: #D4AF37;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
             --img: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200');
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-        
-        .layout { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
-        .visual { position: sticky; top: 0; height: 100vh; background-image: var(--img); background-size: cover; background-position: center; }
-        .visual::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
-        .content { padding: 8rem 5rem; display: flex; flex-direction: column; justify-content: center; background: radial-gradient(circle at top right, #1a1a1a, #0b0b0b); }
-        
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--accent); line-height: 1; margin-bottom: 2rem; }
-        .tag { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent); opacity: 0.6; margin-bottom: 1rem; display: block; }
-        p { font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; max-width: 500px; }
-        
-        .features { display: flex; gap: 2rem; margin-bottom: 4rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        .feat { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: white; }
-        
-        .btn { padding: 1.5rem 3.5rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; letter-spacing: 2px; text-decoration: none; display: inline-block; transition: 0.3s; width: fit-content; }
-        .btn:hover { background: var(--accent); color: black; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
-        
-        .back { position: absolute; top: 30px; left: 30px; text-decoration: none; color: white; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: 700; z-index: 10; opacity: 0.7; }
-        .back:hover { opacity: 1; }
 
-        @media(max-width: 1024px) { .layout { grid-template-columns: 1fr; } .visual { height: 50vh; position: relative; } .content { padding: 3rem 2rem; } h1 { font-size: 3.5rem; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-sans); background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        .split-layout { display: grid; grid-template-columns: 60% 40%; min-height: 100vh; }
+        
+        .visual-panel {
+            position: sticky; top: 0; height: 100vh;
+            background-image: var(--img); background-size: cover; background-position: center;
+        }
+        .visual-panel::after { content:''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+        
+        .content-panel {
+            padding: 8rem 5rem;
+            display: flex; flex-direction: column; justify-content: center;
+            background: radial-gradient(circle at top right, #1a1a1a, #0b0b0b);
+        }
+
+        h1 { font-family: var(--font-serif); font-size: 4.5rem; color: var(--accent); line-height: 1; margin-bottom: 2rem; }
+        .tag { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent); opacity: 0.6; margin-bottom: 1rem; display: block; }
+        
+        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 2rem; opacity: 0.9; max-width: 500px; }
+        
+        .back-link {
+            position: absolute; top: 40px; left: 40px; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+            color: #fff; z-index: 100; font-weight: 700; opacity: 0.5; transition: 0.3s;
+        }
+        .back-link:hover { opacity: 1; color: var(--accent); }
+
+        .btn {
+            padding: 1.5rem 4rem; background: transparent; border: 1px solid var(--accent);
+            color: var(--accent); text-transform: uppercase; letter-spacing: 2px; text-decoration: none;
+            display: inline-block; transition: 0.3s; width: fit-content;
+        }
+        .btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+
+        @media(max-width: 1024px) {
+            .split-layout { grid-template-columns: 1fr; }
+            .visual-panel { height: 40vh; position: relative; }
+            .content-panel { padding: 3rem 2rem; }
+            h1 { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="layout">
-        <a href="index.html" class="back">← Volver</a>
-        <div class="visual"></div>
-        <div class="content">
-            <span class="tag">Serie 03 — Signature</span>
+    <div class="split-layout">
+        <a href="index.html" class="back-link">← Volver</a>
+        
+        <div class="visual-panel"></div>
+        
+        <div class="content-panel">
+            <span class="tag">Colección Nupcial 03</span>
             <h1>Gold Luxury</h1>
-            <p>La máxima expresión de la elegancia nocturna. Fondos oscuros profundos (Deep Black), detalles en pan de oro y tipografía romana clásica.</p>
-            <p>Una invitación que impone etiqueta rigurosa desde el primer clic. Ideal para bodas de noche en palacios, hoteles exclusivos o eventos Black Tie.</p>
             
-            <div class="features">
-                <div class="feat"><i class="fa-solid fa-moon"></i> Nocturno</div>
-                <div class="feat"><i class="fa-solid fa-crown"></i> Exclusive</div>
-                <div class="feat"><i class="fa-solid fa-gem"></i> Premium</div>
-            </div>
-            
-            <a href="contacto.html" class="btn">Solicitar Diseño</a>
+            <p>
+                La máxima expresión de la elegancia nocturna. Fondos oscuros profundos (Deep Black), detalles en pan de oro y tipografía romana clásica.
+            </p>
+            <p>
+                Una invitación que impone etiqueta rigurosa desde el primer clic. 
+            </p>
+
+            <p style="font-size: 0.9rem; margin-bottom: 3rem;">
+                <strong>Ideal para:</strong> Bodas de noche, palacios, eventos Black Tie y galas exclusivas.
+            </p>
+
+            <a href="contacto.html" class="btn">Solicitar este Diseño</a>
         </div>
     </div>
 </body>
