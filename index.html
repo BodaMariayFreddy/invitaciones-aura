@@ -3,352 +3,267 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Invitaciones de Boda Premium</title>
+    <title>AURA | Wedding Suites</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. CONFIGURACIÓN GENERAL Y VARIABLES --- */
+        /* --- 1. VARIABLES DE LUJO --- */
         :root {
-            --col-primary: #1B4D3E;    /* Verde Esmeralda */
-            --col-gold: #D4AF37;       /* Dorado */
-            --col-bg: #FDFCF8;         /* Crema Suave */
-            --col-offwhite: #F4F1EA;   /* Beige Arena */
-            --col-text: #2C2C2C;
-            --col-white: #FFFFFF;
+            --col-primary: #153e32;    /* Verde Bosque Profundo */
+            --col-gold: #cfaa68;       /* Oro Champán */
+            --col-gold-light: #e6d3a3; /* Oro pálido */
+            --col-cream: #fdfcf8;      /* Crema Nupcial */
+            --col-text: #2a2a2a;
             
             --font-head: 'Cinzel Decorative', serif;
             --font-body: 'Montserrat', sans-serif;
             
-            --nav-height: 80px;
-            --shadow-card: 0 10px 40px -10px rgba(0,0,0,0.1);
-            --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.25);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+            --blur: blur(12px);
+            --shadow-float: 0 15px 35px rgba(0,0,0,0.08);
         }
 
-        /* Reset Básico */
+        /* --- 2. RESET Y BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        html { scroll-behavior: smooth; font-size: 16px; }
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: var(--font-body);
-            background-color: var(--col-bg);
+            background-color: var(--col-cream);
             color: var(--col-text);
-            line-height: 1.6;
-            overflow-x: hidden; /* Evita scroll lateral en móvil */
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* Tipografía */
+        /* Textura de "Grano" (Efecto Papel/Cine) */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
         h1, h2, h3 { font-family: var(--font-head); color: var(--col-primary); font-weight: 400; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 1rem; letter-spacing: -1px; }
+        p { font-weight: 300; opacity: 0.9; }
         
-        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 0.5rem; }
-        
-        p { font-weight: 300; }
-        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
         .subtitle {
-            text-align: center;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--col-gold);
-            margin-bottom: 3rem;
-            display: block;
-            font-weight: 600;
+            text-align: center; display: block;
+            font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--col-gold); margin-bottom: 3rem; font-weight: 600;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* --- 3. PRE-LOADER (Pantalla de carga) --- */
+        #loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--col-primary);
+            z-index: 10000;
+            display: flex; justify-content: center; align-items: center; flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .loader-logo {
+            font-family: var(--font-head); font-size: 3rem; color: var(--col-gold);
+            animation: pulse 2s infinite;
+        }
+        .loader-line {
+            width: 0; height: 1px; background: var(--col-gold); margin-top: 10px;
+            animation: lineGrow 1.5s ease-out forwards;
+        }
+        @keyframes pulse { 0% {opacity: 0.5;} 50% {opacity: 1;} 100% {opacity: 0.5;} }
+        @keyframes lineGrow { to { width: 100px; } }
 
-        /* Clases de Utilidad */
-        .bg-cream { background-color: var(--col-offwhite); }
-        .text-center { text-align: center; }
-
-        /* --- 2. BOTONES --- */
+        /* --- 4. COMPONENTES UI (Botones y Cards) --- */
         .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            border: 1px solid transparent;
-            cursor: pointer;
+            display: inline-block; padding: 1rem 2.8rem;
+            border-radius: 0; /* Bordes cuadrados más elegantes */
+            font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;
+            position: relative; transition: all 0.4s ease; cursor: pointer;
+            overflow: hidden; z-index: 1;
         }
 
         .btn-gold {
-            background-color: var(--col-gold);
-            color: var(--col-primary);
+            background: transparent; color: var(--col-primary);
+            border: 1px solid var(--col-gold);
         }
-        
         .btn-gold::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%;
-            background: var(--col-primary); z-index: -1; transition: 0.4s;
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--col-gold); z-index: -1; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        
-        .btn-gold:hover { color: var(--col-gold); border-color: var(--col-gold); }
+        .btn-gold:hover { color: white; border-color: var(--col-gold); }
         .btn-gold:hover::before { width: 100%; }
 
-        .btn-outline {
-            border: 1px solid var(--col-white);
-            color: var(--col-white);
-        }
-        .btn-outline:hover { background: var(--col-white); color: var(--col-primary); }
-
-        /* --- 3. NAVBAR RESPONSIVE --- */
+        /* --- 5. HEADER GLASS --- */
         header {
-            position: fixed;
-            top: 0; width: 100%;
-            height: var(--nav-height);
-            background: rgba(253, 252, 248, 0.95);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%; height: 90px;
+            background: rgba(253, 252, 248, 0.85);
+            backdrop-filter: var(--blur);
             z-index: 1000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%;
-        }
-
-        .logo { font-family: var(--font-head); font-size: 1.8rem; font-weight: 700; color: var(--col-primary); }
-
-        /* Menú Desktop */
-        .nav-menu { display: flex; gap: 2.5rem; align-items: center; }
-        
-        .nav-link {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--col-primary);
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -5px; left: 0;
-            width: 0; height: 1px; background: var(--col-gold);
             transition: 0.3s;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .logo { font-family: var(--font-head); font-size: 2rem; color: var(--col-primary); font-weight: 700; }
+        
+        .nav-menu { display: flex; gap: 3rem; }
+        .nav-link { 
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--col-primary); position: relative; 
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+            width: 0; height: 1px; background: var(--col-gold); transition: 0.3s;
         }
         .nav-link:hover::after { width: 100%; }
 
-        /* Hamburger Icon (Móvil) */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-        .bar {
-            display: block;
-            width: 25px; height: 2px;
-            margin: 5px auto;
-            background-color: var(--col-primary);
-            transition: 0.3s;
-        }
+        .hamburger { display: none; cursor: pointer; }
+        .bar { display: block; width: 25px; height: 1px; background: var(--col-primary); margin: 6px auto; transition: 0.3s; }
 
-        /* --- 4. HERO SECTION --- */
+        /* --- 6. HERO PARALLAX --- */
         .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--col-white);
-            padding-top: var(--nav-height);
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white; position: relative; overflow: hidden;
         }
-
-        .video-bg {
-            position: absolute; top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: brightness(0.35); /* Oscurecer vídeo */
+        .hero-video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; z-index: -1; filter: brightness(0.4) contrast(1.1);
         }
-
-        .hero-content h1 {
-            font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--col-gold);
-        }
-        .hero-content p {
-            font-size: 1.2rem; max-width: 600px; margin: 0 auto 2.5rem; opacity: 0.9;
-        }
-
-        /* --- 5. SECCIÓN DEMO (El Móvil) --- */
-        .demo-section {
-            padding: 6rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-        }
-
-        .demo-info { flex: 1; }
-        .demo-info h2 { text-align: left; }
-        .demo-info .subtitle { text-align: left; margin-bottom: 1.5rem; }
-
-        .features-list li {
-            margin-bottom: 1.2rem;
-            display: flex; align-items: center;
-            font-size: 1.05rem;
-        }
-        .features-list i { color: var(--col-gold); margin-right: 15px; width: 20px; }
-
-        /* Mockup iPhone */
-        .phone-wrapper {
-            flex: 1;
-            display: flex; justify-content: center;
-            position: relative;
-        }
-
-        .phone-mockup {
-            width: 280px; height: 580px;
-            background: #111;
-            border-radius: 45px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            border: 10px solid #2d2d2d;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Video dentro del móvil */
-        .phone-screen-video {
-            width: 100%; height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- 6. GRID DE CARACTERÍSTICAS --- */
-        .features-grid {
-            padding: 5rem 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--col-white);
-            padding: 2.5rem;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: var(--shadow-card);
-            transition: 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-bottom: 3px solid var(--col-gold);
-        }
-
-        .feature-card i { font-size: 2rem; color: var(--col-primary); margin-bottom: 1.5rem; }
-        .feature-card h3 { font-size: 1.3rem; margin-bottom: 1rem; font-family: var(--font-body); font-weight: 600; }
-
-        /* --- 7. PRICING --- */
-        .pricing-section { padding: 6rem 0; }
+        .hero-content { z-index: 2; transform: translateY(30px); opacity: 0; animation: fadeInUp 1s ease 0.5s forwards; }
         
-        .pricing-container {
-            display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+        .hero h1 {
+            color: var(--col-gold-light); font-size: 4.5rem; line-height: 1.1; margin-bottom: 2rem;
         }
+        @keyframes fadeInUp { to { transform: translateY(0); opacity: 1; } }
 
-        .price-card {
-            flex: 1; min-width: 300px; max-width: 350px;
-            background: var(--col-white);
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow-card);
-            text-align: center;
+        /* --- 7. MÓVIL INTERACTIVO (Glassmorphism) --- */
+        .demo-section {
+            padding: 8rem 0;
+            background: linear-gradient(to bottom, var(--col-cream), #f4f1ea);
+            display: flex; align-items: center; justify-content: space-between; gap: 5rem;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg); backdrop-filter: var(--blur);
+            border: var(--glass-border); padding: 3rem; border-radius: 20px;
+            box-shadow: var(--shadow-float);
+        }
+        
+        .phone-container {
+            position: relative; width: 300px; height: 600px;
+            border-radius: 40px; border: 8px solid #2d2d2d; background: #000;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+        .phone-video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 8. NUEVA SECCIÓN: ESTILOS (The Gallery) --- */
+        .styles-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .style-item {
+            height: 400px; position: relative; overflow: hidden; cursor: pointer; border-radius: 4px;
+        }
+        .style-img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;
+        }
+        .style-overlay {
+            position: absolute; inset: 0; background: rgba(21, 62, 50, 0.3);
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .style-name {
+            color: white; font-family: var(--font-head); font-size: 2rem;
+            border: 1px solid rgba(255,255,255,0.5); padding: 1rem 2rem;
+            background: rgba(0,0,0,0.2); backdrop-filter: blur(5px);
+        }
+        .style-item:hover .style-img { transform: scale(1.1); }
+        .style-item:hover .style-overlay { background: rgba(21, 62, 50, 0.1); }
+
+        /* --- 9. PRICING ELEGANTE --- */
+        .pricing-card {
+            background: white; padding: 4rem 2rem; text-align: center;
+            border: 1px solid rgba(0,0,0,0.05); transition: 0.4s;
             position: relative;
         }
-
-        .price-card.premium {
-            transform: scale(1.05);
-            border: 2px solid var(--col-gold);
-            box-shadow: var(--shadow-gold);
+        .pricing-card:hover {
+            transform: translateY(-10px); box-shadow: var(--shadow-float); border-color: var(--col-gold);
         }
-
-        .price-tag {
-            font-size: 3.5rem; font-weight: 700; color: var(--col-primary);
-            font-family: var(--font-head); margin: 1rem 0;
+        .price { font-size: 3.5rem; font-family: var(--font-head); color: var(--col-primary); margin: 1rem 0; }
+        .price span { font-size: 1rem; color: #999; }
+        
+        .pricing-card.premium {
+            background: var(--col-primary); color: white;
+            border: 1px solid var(--col-gold);
         }
-        .price-tag span { font-size: 1rem; font-weight: 400; color: #777; }
+        .pricing-card.premium h3, .pricing-card.premium .price { color: var(--col-gold); }
+        .pricing-card.premium .btn-gold { border-color: var(--col-gold); color: var(--col-gold); }
+        .pricing-card.premium .btn-gold:hover { background: var(--col-gold); color: var(--col-primary); }
+        .pricing-card.premium li { border-bottom: 1px solid rgba(255,255,255,0.1); }
 
-        .benefits-list { text-align: left; margin: 2rem 0; }
-        .benefits-list li { margin-bottom: 0.8rem; font-size: 0.95rem; color: #555; }
-        .benefits-list i { color: var(--col-gold); margin-right: 10px; }
-
-        /* --- 8. FOOTER --- */
-        footer {
-            background: var(--col-primary);
-            color: var(--col-offwhite);
-            padding: 4rem 0 2rem;
-            text-align: center;
+        /* --- 10. BOTÓN FLOTANTE WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: #25d366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 5000; transition: 0.3s; text-decoration: none;
         }
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); }
+
+        /* --- 11. FOOTER --- */
+        footer { background: var(--col-primary); color: rgba(255,255,255,0.6); padding: 5rem 0; text-align: center; }
         footer .logo { color: var(--col-gold); margin-bottom: 1rem; display: inline-block; }
-        .socials { margin: 2rem 0; }
-        .socials a { color: var(--col-white); margin: 0 10px; font-size: 1.2rem; }
 
-        /* --- ANIMACIONES DE ENTRADA (Fade In) --- */
-        .reveal {
-            opacity: 0; transform: translateY(30px); transition: 0.8s all ease;
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-
-        /* --- 9. RESPONSIVE (MEDIA QUERIES) --- */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            /* Hamburguesa visible */
-            .hamburger { display: block; z-index: 1001; }
-            .hamburger.active .bar:nth-child(2) { opacity: 0; }
-            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); background: var(--col-primary); }
-            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); background: var(--col-primary); }
-
-            /* Menú Móvil */
+            .hero h1 { font-size: 2.8rem; }
+            .demo-section { flex-direction: column; padding: 4rem 0; }
+            .glass-card { margin: 0 20px; padding: 2rem; }
             .nav-menu {
-                position: fixed;
-                left: -100%; top: 0;
-                flex-direction: column;
-                background-color: var(--col-offwhite);
-                width: 100%; height: 100vh;
-                justify-content: center;
-                transition: 0.4s;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+                background: var(--col-cream); flex-direction: column; justify-content: center; align-items: center;
+                transition: 0.4s; z-index: 900;
             }
-
             .nav-menu.active { left: 0; }
-            .nav-menu li { margin: 1.5rem 0; }
-            .nav-menu a { font-size: 1.2rem; }
-            .btn-nav { display: none; } /* Ocultar botón CTA en menú móvil si estorba */
-
-            /* Ajustes Hero y Demo */
-            .hero-content h1 { font-size: 2.5rem; }
-            .demo-section { flex-direction: column; padding: 4rem 0; text-align: center; }
-            .demo-info h2, .demo-info .subtitle { text-align: center; }
-            .features-list { display: inline-block; text-align: left; }
+            .hamburger { display: block; z-index: 1001; }
+            .hamburger.active .bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
             
-            /* Ajuste Mockup Móvil */
-            .phone-mockup { width: 240px; height: 480px; }
-            
-            /* Ajuste Pricing */
-            .price-card.premium { transform: scale(1); margin: 1rem 0; }
+            /* Ajuste para que el video no se corte en móviles muy altos */
+            .hero-video { height: 100vh; } 
         }
     </style>
 </head>
 <body>
 
+    <div id="loader">
+        <div class="loader-logo">AURA</div>
+        <div class="loader-line"></div>
+    </div>
+
+    <a href="https://wa.me/123456789" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <header>
         <div class="logo">AURA</div>
-        
-        <ul class="nav-menu">
-            <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
-            <li><a href="#detalles" class="nav-link">Detalles</a></li>
-            <li><a href="#precios" class="nav-link">Tarifas</a></li>
-            <li><a href="#contacto" class="nav-link">Contacto</a></li>
-        </ul>
-
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
+                <li><a href="#coleccion" class="nav-link">Colección</a></li>
+                <li><a href="#precios" class="nav-link">Inversión</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
         <div class="hamburger">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -357,154 +272,153 @@
     </header>
 
     <section class="hero">
-        <video class="video-bg" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline>
             <source src="https://player.vimeo.com/external/371843475.sd.mp4?s=7237457070050654779913777605133827225773&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
         </video>
-        <div class="hero-content container reveal">
-            <h1>Invitaciones que<br>Emocionan</h1>
-            <p>La elegancia del papel, la potencia de lo digital. Crea una experiencia inolvidable para tus invitados.</p>
-            <a href="#experiencia" class="btn btn-gold">Ver ejemplo</a>
+        <div class="hero-content">
+            <h1>La Magia Empieza<br>con un Clic</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2.5rem; color: #f0f0f0;">Invitaciones de boda digitales para parejas que buscan la excelencia.</p>
+            <a href="#experiencia" class="btn btn-gold">Descubrir Aura</a>
         </div>
     </section>
 
-    <section id="experiencia" class="demo-section container bg-cream">
-        <div class="demo-info reveal">
-            <span class="subtitle">Innovación y Diseño</span>
-            <h2>En la palma de su mano</h2>
-            <p>Tus invitados recibirán un enlace único. Sin descargar apps, sin complicaciones. Solo magia visual.</p>
+    <section id="experiencia" class="demo-section container">
+        <div class="glass-card" style="flex: 1;">
+            <span class="subtitle">Tecnología & Elegancia</span>
+            <h2>Una experiencia<br>inmersiva</h2>
+            <p style="margin-bottom: 2rem;">Tus invitados no solo recibirán una invitación, vivirán la emoción de tu boda desde el primer momento. Música, animaciones y fluidez absoluta.</p>
             
-            <ul class="features-list">
-                <li><i class="fa-solid fa-check"></i> Diseño vertical 100% móvil</li>
-                <li><i class="fa-solid fa-map-pin"></i> Mapa GPS integrado</li>
-                <li><i class="fa-brands fa-whatsapp"></i> Confirmación en 1 clic</li>
+            <ul style="list-style: none; margin-bottom: 2rem;">
+                <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                    <i class="fa-solid fa-gem" style="color: var(--col-gold); margin-right: 15px;"></i> Diseño responsive de Alta Costura
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                    <i class="fa-solid fa-map-location-dot" style="color: var(--col-gold); margin-right: 15px;"></i> Guiado GPS inteligente
+                </li>
+                <li style="margin-bottom: 1rem; display: flex; align-items: center;">
+                    <i class="fa-regular fa-calendar-check" style="color: var(--col-gold); margin-right: 15px;"></i> Gestión de invitados en tiempo real
+                </li>
             </ul>
+            <a href="#precios" class="btn btn-gold" style="color: var(--col-text); border-color: var(--col-text);">Ver Planes</a>
         </div>
 
-        <div class="phone-wrapper reveal">
-            <div class="phone-mockup">
-                <video class="phone-screen-video" autoplay muted loop playsinline poster="https://images.pexels.com/photos/5699419/pexels-photo-5699419.jpeg?auto=compress&cs=tinysrgb&w=600">
-                    <source src="https://player.vimeo.com/external/482862437.sd.mp4?s=90b719d33c93512b779610f4d01b7c2185635502&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
-                </video>
-            </div>
+        <div class="phone-container">
+            <video class="phone-video" autoplay muted loop playsinline>
+                <source src="https://player.vimeo.com/external/482862437.sd.mp4?s=90b719d33c93512b779610f4d01b7c2185635502&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+            </video>
         </div>
     </section>
 
-    <section id="detalles" class="container reveal" style="padding: 4rem 20px;">
-        <span class="subtitle">Funcionalidades</span>
-        <h2>Todo lo que incluye</h2>
+    <section id="coleccion" class="container" style="padding: 6rem 25px;">
+        <span class="subtitle">Nuestros Estilos</span>
+        <h2>Diseños que enamoran</h2>
         
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fa-regular fa-clock"></i>
-                <h3>Cuenta Regresiva</h3>
-                <p>Genera expectativa con un contador elegante que marca los días, horas y minutos.</p>
+        <div class="styles-grid">
+            <div class="style-item">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="style-img" alt="Estilo Floral">
+                <div class="style-overlay"><span class="style-name">Botánico</span></div>
             </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-gift"></i>
-                <h3>Lista de Regalos</h3>
-                <p>Facilita los datos bancarios o enlaces a listas de boda de forma discreta y segura.</p>
+            <div class="style-item">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="style-img" alt="Estilo Minimal">
+                <div class="style-overlay"><span class="style-name">Minimal</span></div>
             </div>
-            <div class="feature-card">
-                <i class="fa-regular fa-images"></i>
-                <h3>Galería Privada</h3>
-                <p>Comparte vuestra pre-boda en alta resolución para enamorar a los invitados.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fa-solid fa-van-shuttle"></i>
-                <h3>Autobuses y Hoteles</h3>
-                <p>Información logística clara para que nadie tenga dudas sobre el alojamiento.</p>
+            <div class="style-item">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="style-img" alt="Estilo Luxury">
+                <div class="style-overlay"><span class="style-name">Gold</span></div>
             </div>
         </div>
     </section>
 
-    <section id="precios" class="pricing-section bg-cream">
-        <div class="container reveal">
-            <span class="subtitle">Inversión</span>
-            <h2>Elige tu invitación</h2>
+    <section id="precios" style="background: var(--col-cream); padding: 6rem 0;">
+        <div class="container">
+            <span class="subtitle">Tu Inversión</span>
+            <h2>Selecciona tu nivel</h2>
             
-            <div class="pricing-container">
-                <div class="price-card">
+            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem;">
+                
+                <div class="pricing-card" style="flex: 1; min-width: 300px; max-width: 350px;">
                     <h3>Essential</h3>
-                    <div class="price-tag">89€</div>
-                    <ul class="benefits-list">
-                        <li><i class="fa-solid fa-check"></i> Diseño plantilla Aura</li>
-                        <li><i class="fa-solid fa-check"></i> Ubicación y Horarios</li>
-                        <li><i class="fa-solid fa-check"></i> RSVP WhatsApp</li>
-                        <li><i class="fa-solid fa-check"></i> 3 Meses online</li>
+                    <div class="price">89€</div>
+                    <ul style="list-style: none; text-align: left; margin: 2rem 0; opacity: 0.8;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">Diseño Plantilla Aura</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">RSVP por WhatsApp</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">Mapa de Ubicación</li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #eee;">3 Meses Activa</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-outline" style="border-color: #ccc; color: #333;">Seleccionar</a>
+                    <a href="#contacto" class="btn btn-gold" style="color: var(--col-text); border-color: #ddd;">Elegir</a>
                 </div>
 
-                <div class="price-card premium">
-                    <div style="background: var(--col-gold); color: white; padding: 5px; font-size: 0.7rem; font-weight: bold; position: absolute; top: 0; left: 0; width: 100%; border-radius: 10px 10px 0 0;">RECOMENDADO</div>
-                    <h3 style="margin-top: 1rem;">Premium</h3>
-                    <div class="price-tag">149€</div>
-                    <ul class="benefits-list">
-                        <li><i class="fa-solid fa-check"></i> <strong>Todo lo anterior</strong></li>
-                        <li><i class="fa-solid fa-check"></i> Galería de Fotos</li>
-                        <li><i class="fa-solid fa-check"></i> Sección "Nuestra Historia"</li>
-                        <li><i class="fa-solid fa-check"></i> Cuenta atrás animada</li>
-                        <li><i class="fa-solid fa-check"></i> 6 Meses online</li>
+                <div class="pricing-card premium" style="flex: 1; min-width: 300px; max-width: 350px;">
+                    <span style="position: absolute; top: 20px; right: 20px; font-size: 0.7rem; border: 1px solid var(--col-gold); padding: 5px 10px; color: var(--col-gold);">BEST SELLER</span>
+                    <h3>Signature</h3>
+                    <div class="price">159€</div>
+                    <ul style="list-style: none; text-align: left; margin: 2rem 0; opacity: 0.9;">
+                        <li style="padding: 10px 0;">Todo lo incluido en Essential</li>
+                        <li style="padding: 10px 0;">Galería de Fotos Pre-boda</li>
+                        <li style="padding: 10px 0;">Cuenta atrás animada</li>
+                        <li style="padding: 10px 0;">Sección "Nuestra Historia"</li>
+                        <li style="padding: 10px 0;">6 Meses Activa</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-gold">Quiero este</a>
+                    <a href="#contacto" class="btn btn-gold">Quiero lo mejor</a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <section id="contacto" class="container reveal" style="padding: 6rem 20px; text-align: center;">
-        <h2>¿Listo para empezar?</h2>
-        <p style="margin-bottom: 2rem;">Escríbenos y diseñaremos la invitación de tus sueños.</p>
-        <a href="https://wa.me/123456789" class="btn btn-gold">
-            <i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp
-        </a>
+    <section id="contacto" style="background: #1a1a1a; color: white; padding: 6rem 0; text-align: center;">
+        <div class="container">
+            <h2 style="color: var(--col-gold);">¿Hablamos?</h2>
+            <p style="margin-bottom: 3rem; color: #999;">Estamos listos para diseñar la invitación de tus sueños.</p>
+            <a href="https://wa.me/123456789" class="btn btn-gold" style="padding: 1.2rem 4rem;">Contactar Ahora</a>
+        </div>
     </section>
 
     <footer>
         <div class="logo">AURA</div>
-        <div class="socials">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <p style="font-size: 0.8rem; margin-top: 1rem;">© 2024 Aura Digital Suites. All rights reserved.</p>
+        <div style="margin-top: 2rem;">
+            <i class="fa-brands fa-instagram" style="margin: 0 10px; color: var(--col-gold); font-size: 1.2rem;"></i>
+            <i class="fa-brands fa-pinterest" style="margin: 0 10px; color: var(--col-gold); font-size: 1.2rem;"></i>
         </div>
-        <p style="font-size: 0.8rem; opacity: 0.7;">© 2024 Aura Invitaciones. Diseñado con pasión.</p>
     </footer>
 
     <script>
-        // 1. MENÚ HAMBURGUESA
-        const hamburger = document.querySelector(".hamburger");
-        const navMenu = document.querySelector(".nav-menu");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
+        // 1. PRE-LOADER
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 1500); // 1.5 segundos de carga simulada para lucir el logo
         });
 
-        // Cerrar menú al hacer clic en un enlace
-        navLinks.forEach(n => n.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            navMenu.classList.remove("active");
+        // 2. MENÚ RESPONSIVE
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navLinks.forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
         }));
 
-        // 2. ANIMACIÓN AL HACER SCROLL (Fade In)
-        window.addEventListener('scroll', reveal);
-
-        function reveal(){
-            var reveals = document.querySelectorAll('.reveal');
-
-            for(var i = 0; i < reveals.length; i++){
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
-
-                if(revealtop < windowheight - revealpoint){
-                    reveals[i].classList.add('active');
-                }
+        // 3. CAMBIO DE HEADER AL SCROLL
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 50) {
+                header.style.height = '70px'; // Se hace más pequeño
+                header.style.background = 'rgba(253, 252, 248, 0.95)';
+            } else {
+                header.style.height = '90px';
+                header.style.background = 'rgba(253, 252, 248, 0.85)';
             }
-        }
-        
-        // Disparar una vez al inicio por si hay elementos ya visibles
-        reveal();
+        });
     </script>
 </body>
 </html>
