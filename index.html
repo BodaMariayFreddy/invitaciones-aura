@@ -1,174 +1,296 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Digital Wedding Atelier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <meta name="description" content="AURA - Invitaciones de boda digitales de alta costura.">
+    <title>AURA | Wedding Digital Atelier</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* -----------------------------------------------------------------
+           1. SISTEMA DE DISEÑO (IVORY & GOLD PRESTIGE)
+        ----------------------------------------------------------------- */
         :root {
-            --bg: #FDFBF7; --surface: #FFFFFF; --text: #1A1A1A; --text-muted: #666;
-            --accent: #C5A059; --accent-dark: #8A6E36;
-            --f-head: 'Cinzel', serif; --f-sub: 'Cormorant Garamond', serif; --f-body: 'Montserrat', sans-serif;
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+            /* Colores */
+            --bg-color: #FDFBF7;           /* Crema Nupcial */
+            --bg-alt: #F4F1EA;             /* Beige Arena */
+            --text-main: #1A1A1A;          /* Charcoal */
+            --text-muted: #666666;
+            --accent: #C5A059;             /* Oro Mate */
+            --accent-dark: #9E7D3E;
+            --line-color: rgba(0,0,0,0.08);
+            
+            /* Tipografía */
+            --font-display: 'Cinzel', serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            
+            /* Layout */
+            --container-width: 1400px;
+            --section-spacing: clamp(5rem, 10vh, 10rem);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); font-family: var(--f-body); line-height: 1.7; overflow-x: hidden; }
+        /* RESET */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-sans); line-height: 1.7; overflow-x: hidden; }
 
         /* UTILIDADES */
-        .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
+        .container { max-width: var(--container-width); margin: 0 auto; padding: 0 5%; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .grid { display: grid; gap: 2rem; }
         .text-center { text-align: center; }
-        .uppercase { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 600; }
+        .uppercase { text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 600; }
         .accent { color: var(--accent); }
-        h1, h2, h3 { font-family: var(--f-head); font-weight: 400; margin-bottom: 1rem; }
-        h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; }
-        h2 { font-size: 3rem; }
+        .serif { font-family: var(--font-serif); font-style: italic; }
         
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.1; color: var(--text-main); }
+        h1 { font-size: clamp(3.5rem, 7vw, 6rem); }
+        h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; }
+        p { margin-bottom: 2rem; color: var(--text-muted); font-size: 1.05rem; }
+
+        /* BOTONES PREMIUM */
         .btn {
-            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--text);
-            background: transparent; color: var(--text); text-transform: uppercase;
-            letter-spacing: 2px; font-size: 0.8rem; text-decoration: none; transition: 0.4s;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1.2rem 3.5rem; border: 1px solid var(--text-main);
+            background: transparent; color: var(--text-main);
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
+            position: relative; overflow: hidden; transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            text-decoration: none; cursor: pointer;
         }
-        .btn:hover { background: var(--text); color: white; }
+        .btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%;
+            background: var(--text-main); z-index: -1; transition: 0.4s;
+        }
+        .btn:hover { color: var(--bg-color); border-color: transparent; }
+        .btn:hover::before { width: 100%; }
+
         .btn-gold { border-color: var(--accent); color: var(--accent); }
-        .btn-gold:hover { background: var(--accent); color: white; }
+        .btn-gold::before { background: var(--accent); }
+        .btn-gold:hover { color: white; }
 
-        /* HEADER */
-        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        /* -----------------------------------------------------------------
+           2. HEADER & NAVEGACIÓN
+        ----------------------------------------------------------------- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000;
+            background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line-color); transition: 0.3s;
+        }
         .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--f-head); font-size: 1.8rem; font-weight: 600; text-decoration: none; color: var(--text); }
-        .menu a { margin: 0 1.5rem; text-decoration: none; color: var(--text); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; }
+        .logo { font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+        
+        .menu { display: flex; gap: 3rem; }
+        .menu a { text-decoration: none; color: var(--text-main); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; position: relative; }
+        .menu a::after { content:''; position: absolute; bottom:-5px; left:0; width:0; height:1px; background: var(--accent); transition:0.3s; }
         .menu a:hover { color: var(--accent); }
+        .menu a:hover::after { width:100%; }
 
-        /* HERO */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: #000; overflow: hidden; }
-        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; animation: zoom 20s infinite alternate; }
-        .hero-content { position: relative; z-index: 2; text-align: center; color: white; padding-top: 4rem; }
-        .hero p { font-family: var(--f-sub); font-size: 1.5rem; font-style: italic; margin-bottom: 2rem; opacity: 0.9; }
+        /* -----------------------------------------------------------------
+           3. HERO SECTION (IMAGEN DE ALTA RESOLUCIÓN)
+        ----------------------------------------------------------------- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; background-color: #000;
+        }
+        .hero-img {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7;
+            transition: transform 10s;
+        }
+        .hero:hover .hero-img { transform: scale(1.05); }
+        
+        .hero-content {
+            position: relative; z-index: 10; text-align: center; color: white; padding-top: 5rem;
+        }
+        .hero h1 { margin-bottom: 2rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .hero p { font-family: var(--font-serif); font-size: 1.5rem; font-style: italic; max-width: 600px; margin: 0 auto 3rem; opacity: 0.9; }
         .btn-hero { border-color: white; color: white; }
         .btn-hero:hover { background: white; color: black; }
 
-        /* ATELIER TEASER */
-        .atelier-teaser { padding: 8rem 0; background: white; }
-        .atelier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-        .atelier-img { width: 100%; border-radius: 4px; }
+        /* -----------------------------------------------------------------
+           4. EL ATELIER (SOBRE NOSOTROS)
+        ----------------------------------------------------------------- */
+        .atelier { padding: var(--section-spacing) 0; background: #fff; }
+        .atelier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+        
+        .atelier-img-box { position: relative; padding: 2rem 0 0 2rem; }
+        .atelier-img-box::before {
+            content:''; position: absolute; top:0; left:0; width: 100%; height: 100%; 
+            border: 1px solid var(--accent); z-index: 0;
+        }
+        .atelier-img { width: 100%; position: relative; z-index: 1; display: block; }
 
-        /* PHONE DEMO */
-        .demo-section { padding: 8rem 0; background: var(--bg-alt); }
-        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        /* -----------------------------------------------------------------
+           5. INTERACTIVE PHONE DEMO (LA SOLUCIÓN IFRAME)
+        ----------------------------------------------------------------- */
+        .demo { padding: var(--section-spacing) 0; background: var(--bg-alt); }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center; }
+        
         .phone-mockup {
-            width: 320px; height: 650px; margin: 0 auto; background: #fff;
-            border-radius: 45px; border: 12px solid #e0e0e0; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
-            overflow: hidden; position: relative;
+            width: 340px; height: 680px; margin: 0 auto;
+            background: #fff; border-radius: 55px;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.2);
+            border: 12px solid #e0e0e0; position: relative; overflow: hidden;
         }
-        .phone-iframe { width: 100%; height: 100%; border: none; }
+        .phone-screen { width: 100%; height: 100%; border: none; background: #fff; }
 
-        /* COLECCIÓN (GRID 5 ESTILOS) */
-        .collection { padding: 8rem 0; }
-        .col-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2rem; margin-top: 4rem; }
+        .feature-list li {
+            display: flex; gap: 1.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid var(--line-color); padding-bottom: 2rem;
+        }
+        .f-icon { font-size: 1.5rem; color: var(--accent); }
+
+        /* -----------------------------------------------------------------
+           6. COLECCIÓN (GRID ROBUSTO)
+        ----------------------------------------------------------------- */
+        .collection { padding: var(--section-spacing) 0; }
+        .col-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
         
-        .card { display: block; position: relative; height: 500px; overflow: hidden; text-decoration: none; }
+        .card { 
+            display: block; position: relative; height: 550px; overflow: hidden; text-decoration: none; 
+            background: #eee;
+        }
         .card img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
-        .card:hover img { transform: scale(1.05); }
-        .card-overlay {
-            position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex;
-            flex-direction: column; justify-content: flex-end; padding: 2rem; color: white;
-            opacity: 0; transition: 0.5s; transform: translateY(20px);
-        }
-        .card:hover .card-overlay { opacity: 1; transform: translateY(0); }
+        .card:hover img { transform: scale(1.1); }
         
-        /* Grid Layout */
-        .w-half { grid-column: span 3; } /* 50% width */
-        .w-third { grid-column: span 2; } /* 33% width */
+        .card-info {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 2.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white; transform: translateY(100%); transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .card:hover .card-info { transform: translateY(0); }
+        .card-title { font-family: var(--font-display); font-size: 2rem; line-height: 1; display: block; }
+        .card-sub { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); display: block; margin-bottom: 0.5rem; }
 
-        /* PRICING */
-        .pricing { padding: 8rem 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-        .price-card { padding: 3rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
+        /* -----------------------------------------------------------------
+           7. TARIFAS (PRICING TABLE)
+        ----------------------------------------------------------------- */
+        .pricing { padding: var(--section-spacing) 0; background: #fff; border-top: 1px solid var(--line-color); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        
+        .price-card {
+            padding: 4rem 2rem; border: 1px solid var(--line-color); text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column;
+        }
         .price-card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .price-card.featured { background: #1a1a1a; color: white; border: none; transform: scale(1.05); }
-        .price-val { font-family: var(--f-head); font-size: 3rem; margin: 1rem 0; color: var(--accent); }
-        .price-feat li { margin-bottom: 1rem; color: #666; font-size: 0.9rem; }
-        .price-card.featured .price-feat li { color: #aaa; }
+        
+        .price-card.featured { background: #111; color: white; border: none; transform: scale(1.05); }
+        .price-card.featured .features li { color: #aaa; border-color: rgba(255,255,255,0.1); }
+        .price-card.featured .price-amount { color: var(--accent); }
+        
+        .price-amount { font-family: var(--font-display); font-size: 3.5rem; margin: 1.5rem 0; color: var(--text-main); }
+        .features { list-style: none; margin-bottom: 3rem; flex-grow: 1; text-align: left; }
+        .features li { padding: 1rem 0; border-bottom: 1px solid var(--line-color); font-size: 0.9rem; display: flex; justify-content: space-between; }
 
         /* FOOTER */
-        footer { background: #111; color: white; padding: 5rem 0; text-align: center; }
-        .f-links a { color: #888; margin: 0 1rem; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; }
+        footer { background: #111; color: white; padding: 6rem 0; text-align: center; }
+        .footer-logo { font-family: var(--font-display); font-size: 3rem; display: block; margin-bottom: 2rem; }
+        .f-nav a { color: #888; margin: 0 1rem; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; transition: 0.3s; }
+        .f-nav a:hover { color: var(--accent); }
 
-        @keyframes zoom { to { transform: scale(1.1); } }
+        /* RESPONSIVE */
         @media(max-width: 1024px) {
-            .nav-wrap, .atelier-grid, .demo-grid, .col-grid, .pricing-grid { display: flex; flex-direction: column; }
+            .hero h1 { font-size: 3.5rem; }
+            .atelier-grid, .demo-grid, .col-grid { grid-template-columns: 1fr; gap: 4rem; }
             .menu { display: none; }
-            .card { width: 100%; height: 400px; }
             .price-card.featured { transform: scale(1); }
+            .phone-mockup { margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="container nav-wrap">
-            <a href="index.html" class="logo">AURA.</a>
-            <nav class="menu">
-                <a href="atelier.html">El Atelier</a>
-                <a href="#coleccion">Colección</a>
-                <a href="#tarifas">Tarifas</a>
-            </nav>
-            <a href="contacto.html" class="btn btn-gold">Empezar</a>
+        <div class="container">
+            <div class="nav-wrap">
+                <a href="index.html" class="logo">AURA.</a>
+                <nav class="menu">
+                    <a href="#atelier">Atelier</a>
+                    <a href="#experiencia">Experiencia</a>
+                    <a href="#coleccion">Colección</a>
+                    <a href="#tarifas">Tarifas</a>
+                </nav>
+                <a href="contacto.html" class="btn btn-gold">Empezar</a>
+            </div>
         </div>
     </header>
 
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="hero-img" alt="Boda Luxury">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="hero-img" alt="Boda Luxury" onerror="this.src='https://via.placeholder.com/1600x900?text=AURA+WEDDINGS'">
         
         <div class="hero-content">
-            <span class="uppercase accent">Alta Costura Digital</span>
-            <h1>Invitaciones <br><em>Eternas</em></h1>
-            <p>Donde el diseño editorial se encuentra con la tecnología.</p>
+            <span class="uppercase accent">Invitaciones Digitales</span>
+            <h1>Eternas & <br><em>Inolvidables</em></h1>
+            <p>Diseño editorial fusionado con tecnología web. La primera impresión perfecta.</p>
             <a href="#coleccion" class="btn btn-hero">Ver Colección</a>
         </div>
     </section>
 
-    <section class="atelier-teaser">
+    <section id="atelier" class="atelier">
         <div class="container atelier-grid">
             <div class="txt">
-                <span class="uppercase accent">Nuestra Esencia</span>
-                <h2 style="font-size: 3rem;">El Atelier</h2>
-                <p style="color: #666; margin-bottom: 2rem;">
-                    AURA nace para las parejas que valoran la estética pero exigen funcionalidad. 
-                    Rechazamos los PDFs estáticos y las plantillas genéricas. 
-                    Creamos experiencias web vivas, diseñadas a mano, que guían a tus invitados hasta el altar.
+                <span class="uppercase accent">El Atelier</span>
+                <h2 style="font-size: 3rem;">Artesanía Digital</h2>
+                <p>
+                    AURA nace para las parejas que exigen excelencia. Rechazamos los PDFs estáticos y las plantillas genéricas.
+                    Creamos webs vivas, diseñadas con la precisión de un relojero y la estética de una revista de moda.
                 </p>
-                <a href="atelier.html" class="btn">Conoce nuestra historia</a>
+                <p>
+                    Nuestro equipo combina diseñadores gráficos senior e ingenieros web para garantizar que tu invitación no solo sea bella, sino infalible.
+                </p>
+                <div style="margin-top:2rem; display:flex; gap:3rem;">
+                    <div><h3 style="color:var(--accent); font-size:2.5rem; margin:0;">500+</h3><span class="uppercase">Bodas</span></div>
+                    <div><h3 style="color:var(--accent); font-size:2.5rem; margin:0;">100%</h3><span class="uppercase">Digital</span></div>
+                </div>
             </div>
-            <div class="img">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="atelier-img" alt="Oficina Diseño">
+            <div class="atelier-img-box">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="atelier-img" alt="Diseño">
             </div>
         </div>
     </section>
 
-    <section class="demo-section">
+    <section id="experiencia" class="demo">
         <div class="container demo-grid">
             <div class="info">
-                <span class="uppercase accent">Interactivo</span>
-                <h2 style="font-size: 3rem;">Tócalo. Es Real.</h2>
-                <p style="color: #666;">
-                    Haz scroll en el teléfono de la derecha. Es una invitación AURA real.
-                    Observa la suavidad, la cuenta regresiva y el mapa integrado.
-                    Tus invitados tendrán toda la info de la boda en su bolsillo, sin instalar nada.
+                <span class="uppercase accent">Pruébalo</span>
+                <h2 style="font-size: 3rem;">Tecnología Viva</h2>
+                <p>
+                    Interactúa con el teléfono de la derecha. Es una invitación real. 
+                    Haz scroll, pulsa los botones y navega por el mapa. 
+                    Todo esto sin que tus invitados instalen ninguna App.
                 </p>
-                <ul style="margin-top: 2rem; list-style: none;">
-                    <li style="margin-bottom: 1rem;">✓ Animaciones fluidas</li>
-                    <li style="margin-bottom: 1rem;">✓ RSVP Integrado (WhatsApp/Email)</li>
-                    <li>✓ Geolocalización GPS</li>
+                <ul class="feature-list">
+                    <li>
+                        <div class="f-icon"><i class="fa-regular fa-paper-plane"></i></div>
+                        <div>
+                            <h4>Envío Instantáneo</h4>
+                            <p style="font-size:0.9rem; margin:0;">Comparte el enlace por WhatsApp o Email en segundos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="f-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div>
+                            <h4>GPS Integrado</h4>
+                            <p style="font-size:0.9rem; margin:0;">Google Maps y Waze guían a tus invitados a la puerta.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="f-icon"><i class="fa-solid fa-check-double"></i></div>
+                        <div>
+                            <h4>RSVP Automático</h4>
+                            <p style="font-size:0.9rem; margin:0;">Confirmaciones organizadas en tiempo real.</p>
+                        </div>
+                    </li>
                 </ul>
             </div>
+            
             <div class="phone-mockup">
-                <iframe src="demo.html" class="phone-iframe"></iframe>
+                <iframe id="phoneFrame" class="phone-screen" title="Demo"></iframe>
             </div>
         </div>
     </section>
@@ -179,26 +301,46 @@
                 <span class="uppercase accent">Series 2026</span>
                 <h2>La Colección</h2>
             </div>
+            
             <div class="col-grid">
-                <a href="botanico.html" class="card w-half">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800">
-                    <div class="card-overlay"><h3>Botánico</h3><span class="uppercase accent">Ver Diseño</span></div>
+                <a href="botanico.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Botánico">
+                    <div class="card-info">
+                        <span class="card-sub">Serie 01</span>
+                        <span class="card-title">Botánico</span>
+                    </div>
                 </a>
-                <a href="minimal.html" class="card w-half">
-                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=800">
-                    <div class="card-overlay"><h3>Minimal</h3><span class="uppercase accent">Ver Diseño</span></div>
+                
+                <a href="minimal.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800" alt="Minimal">
+                    <div class="card-info">
+                        <span class="card-sub">Serie 02</span>
+                        <span class="card-title">Minimal</span>
+                    </div>
                 </a>
-                <a href="gold.html" class="card w-third">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800">
-                    <div class="card-overlay"><h3>Gold Luxury</h3><span class="uppercase accent">Ver Diseño</span></div>
+
+                <a href="gold.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" alt="Gold">
+                    <div class="card-info">
+                        <span class="card-sub">Serie 03</span>
+                        <span class="card-title">Gold</span>
+                    </div>
                 </a>
-                <a href="romantico.html" class="card w-third">
-                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc330e7?q=80&w=800">
-                    <div class="card-overlay"><h3>Romántico</h3><span class="uppercase accent">Ver Diseño</span></div>
+                
+                <a href="romantico.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1509927083803-4bd519298ac4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Romántico">
+                    <div class="card-info">
+                        <span class="card-sub">Serie 04</span>
+                        <span class="card-title">Romántico</span>
+                    </div>
                 </a>
-                <a href="boho.html" class="card w-third">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800">
-                    <div class="card-overlay"><h3>Boho Chic</h3><span class="uppercase accent">Ver Diseño</span></div>
+
+                <a href="boho.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" alt="Boho">
+                    <div class="card-info">
+                        <span class="card-sub">Serie 05</span>
+                        <span class="card-title">Boho Chic</span>
+                    </div>
                 </a>
             </div>
         </div>
@@ -208,41 +350,44 @@
         <div class="container">
             <div class="text-center">
                 <span class="uppercase accent">Inversión</span>
-                <h2>Tarifas</h2>
+                <h2>Tarifas Claras</h2>
             </div>
+            
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3>Essential</h3>
-                    <div class="price-val">89€</div>
-                    <ul class="price-feat features">
-                        <li>Diseño de Colección</li>
-                        <li>Mapa y Horarios</li>
-                        <li>RSVP por WhatsApp</li>
-                        <li>3 Meses Online</li>
+                    <div class="price-amount">89€</div>
+                    <ul class="features">
+                        <li>Diseño de Colección <span>✓</span></li>
+                        <li>Mapa GPS <span>✓</span></li>
+                        <li>RSVP WhatsApp <span>✓</span></li>
+                        <li>3 Meses Online <span>✓</span></li>
                     </ul>
-                    <a href="contacto.html" class="btn">Elegir</a>
+                    <a href="contacto.html" class="btn">Seleccionar</a>
                 </div>
+
                 <div class="price-card featured">
-                    <span class="uppercase accent" style="font-size:0.7rem; margin-bottom:1rem; display:block;">Best Seller</span>
+                    <span class="uppercase accent" style="font-size:0.7rem; margin-bottom:10px; display:block;">Best Seller</span>
                     <h3>Signature</h3>
-                    <div class="price-val">159€</div>
-                    <ul class="price-feat features">
-                        <li><strong>Todo lo de Essential</strong></li>
-                        <li>Galería de Fotos Ilimitada</li>
-                        <li>Cuenta Atrás Animada</li>
-                        <li>Sección "Nuestra Historia"</li>
-                        <li>1 Año Online</li>
+                    <div class="price-amount">159€</div>
+                    <ul class="features">
+                        <li><strong>Todo lo de Essential</strong> <span>✓</span></li>
+                        <li>Galería Fotos Ilimitada <span>✓</span></li>
+                        <li>Cuenta Atrás <span>✓</span></li>
+                        <li>Sección "Nuestra Historia" <span>✓</span></li>
+                        <li>1 Año Online <span>✓</span></li>
                     </ul>
-                    <a href="contacto.html" class="btn btn-gold">Elegir</a>
+                    <a href="contacto.html" class="btn btn-gold">Seleccionar</a>
                 </div>
+
                 <div class="price-card">
                     <h3>Bespoke</h3>
-                    <div class="price-val">299€</div>
-                    <ul class="price-feat features">
-                        <li>Diseño 100% A Medida</li>
-                        <li>Dominio Propio (.com)</li>
-                        <li>Soporte Prioritario</li>
-                        <li>Idiomas Múltiples</li>
+                    <div class="price-amount">299€</div>
+                    <ul class="features">
+                        <li>Diseño 100% A Medida <span>✓</span></li>
+                        <li>Dominio Propio (.com) <span>✓</span></li>
+                        <li>Idiomas Múltiples <span>✓</span></li>
+                        <li>Soporte Prioritario <span>✓</span></li>
                     </ul>
                     <a href="contacto.html" class="btn">Consultar</a>
                 </div>
@@ -252,15 +397,65 @@
 
     <footer>
         <div class="container">
-            <h2 class="logo" style="color:white; font-size: 3rem;">AURA.</h2>
-            <div class="f-links" style="margin: 2rem 0;">
-                <a href="atelier.html">Nosotros</a>
-                <a href="#tarifas">Tarifas</a>
+            <h2 class="footer-logo">AURA.</h2>
+            <div class="f-nav">
+                <a href="#atelier">Atelier</a>
+                <a href="#coleccion">Colección</a>
                 <a href="contacto.html">Contacto</a>
+                <a href="#">Instagram</a>
             </div>
-            <p style="font-size: 0.8rem; color: #555;">© 2026 Aura Digital Suites.</p>
+            <p style="margin-top: 3rem; color: #555; font-size: 0.8rem;">© 2026 Aura Digital Suites. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        // Este script escribe el HTML de la demo DENTRO del iframe. 
+        const frame = document.getElementById('phoneFrame');
+        const demoHTML = `
+            <!DOCTYPE html>
+            <html style="overflow-x:hidden;">
+            <head>
+                <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+                <style>
+                    body { margin:0; font-family:'Montserrat',sans-serif; background:#fff; text-align:center; color:#333; }
+                    .hero { height:100vh; background:url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=600') center/cover; display:flex; flex-direction:column; justify-content:center; color:white; position:relative; }
+                    .hero::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.3); }
+                    .content { position:relative; z-index:2; }
+                    h1 { font-family:'Great Vibes'; font-size:4rem; margin:0; line-height:1; }
+                    .btn { display:inline-block; margin-top:20px; padding:10px 25px; background:#C5A059; color:white; text-decoration:none; text-transform:uppercase; font-size:0.7rem; border-radius:50px; }
+                    .sec { padding:40px 20px; }
+                    .map { width:100%; height:150px; background:#eee; display:flex; align-items:center; justify-content:center; margin:20px 0; color:#999; }
+                </style>
+            </head>
+            <body>
+                <div class="hero">
+                    <div class="content">
+                        <div style="letter-spacing:3px; font-size:0.8rem; margin-bottom:10px;">24 . 08 . 2026</div>
+                        <h1>Ana &<br>David</h1>
+                        <div style="margin-top:40px; font-size:0.7rem;">DESLIZA</div>
+                    </div>
+                </div>
+                <div class="sec">
+                    <h2 style="font-family:'Great Vibes'; color:#C5A059; font-size:2.5rem;">La Ceremonia</h2>
+                    <p style="font-size:0.9rem; color:#666;">Os esperamos para celebrar el amor.</p>
+                    <div class="map">Mapa Google Maps</div>
+                    <a href="#" class="btn">Confirmar</a>
+                </div>
+            </body>
+            </html>
+        `;
+        
+        // Escribir en el iframe
+        const doc = frame.contentWindow.document;
+        doc.open();
+        doc.write(demoHTML);
+        doc.close();
+
+        // Efecto Header
+        window.addEventListener('scroll', () => {
+            const h = document.querySelector('header');
+            window.scrollY > 50 ? h.classList.add('scrolled') : h.classList.remove('scrolled');
+        });
+    </script>
 </body>
 </html>
