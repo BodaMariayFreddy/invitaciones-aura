@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AURA | El Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #FDFBF7; --text: #1A1A1A; --accent: #C5A059; }
+        body { background: var(--bg); color: var(--text); font-family: 'Lato', sans-serif; margin: 0; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        
+        nav { padding: 2rem; text-align: center; }
+        nav a { text-decoration: none; color: #999; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        
+        .hero { text-align: center; padding: 4rem 0; border-bottom: 1px solid rgba(0,0,0,0.1); }
+        h1 { font-family: 'Cinzel', serif; font-size: 3.5rem; margin-bottom: 1rem; }
+        p.lead { font-size: 1.2rem; max-width: 600px; margin: 0 auto; color: #555; }
+        
+        .story { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; align-items: center; }
+        .story img { width: 100%; border-radius: 4px; }
+        
+        .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 6rem; text-align: center; }
+        .val h3 { font-family: 'Cinzel', serif; color: var(--accent); margin-bottom: 1rem; }
+        
+        footer { text-align: center; padding: 4rem 0; margin-top: 4rem; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <nav><a href="index.html">← Volver al Inicio</a></nav>
+    
+    <div class="container">
+        <section class="hero">
+            <h1>El Atelier</h1>
+            <p class="lead">Donde la artesanía tradicional se encuentra con la innovación digital. Diseñamos reliquias modernas.</p>
+        </section>
+
+        <section class="story">
+            <div class="txt">
+                <h2 style="font-family:'Cinzel', serif;">Nuestra Historia</h2>
+                <p>AURA nació de la frustración. Vimos cómo parejas invertían miles de euros en papelería que acababa en la basura. Quisimos crear algo permanente, elegante y útil.</p>
+                <p>Somos un equipo pequeño de diseñadores editoriales e ingenieros de software obsesionados con los detalles.</p>
+            </div>
+            <div class="img">
+                <img src="https://images.unsplash.com/photo-1550529524-748956694856?q=80&w=800" alt="Studio">
+            </div>
+        </section>
+
+        <section class="values">
+            <div class="val">
+                <h3>Sostenible</h3>
+                <p>Cero papel. Cero huella de carbono en logística. 100% Digital.</p>
+            </div>
+            <div class="val">
+                <h3>Atemporal</h3>
+                <p>Diseños que no siguen modas pasajeras, sino cánones clásicos.</p>
+            </div>
+            <div class="val">
+                <h3>Servicio</h3>
+                <p>Trato White-Glove. Nos encargamos de todo por ti.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>© 2026 Aura Atelier.</footer>
+</body>
+</html>
