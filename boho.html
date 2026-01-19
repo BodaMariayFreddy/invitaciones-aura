@@ -2,77 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Boho Chic</title> 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>AURA | Boho</title> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* CONFIG BOHO */
-        :root { 
-            --bg: #F3E5DC;       /* Beige Arena / Cálido */
-            --text: #3D2B1F;     /* Marrón Café */
-            --accent: #A0522D;   /* Terracota / Sienna */
-        }
-        
-        body { margin: 0; font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
-        
-        nav { padding: 2rem; }
-        a.back { text-decoration: none; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; }
-        
-        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
-        .hero-img { width: 100%; height: 600px; object-fit: cover; border-radius: 8px; box-shadow: 0 20px 40px rgba(160, 82, 45, 0.15); filter: sepia(20%); }
-        
-        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); margin-bottom: 1rem; line-height: 1; }
-        p.desc { font-size: 1.1rem; line-height: 1.8; opacity: 0.9; margin-bottom: 2rem; }
-        
-        .details { margin-top: 4rem; border-top: 1px solid rgba(160, 82, 45, 0.2); padding-top: 4rem; }
-        .details h3 { font-family: 'Playfair Display', serif; margin-bottom: 2rem; font-size: 2rem; color: var(--text); }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .feat i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
-        .feat h4 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        
-        .btn { padding: 1.2rem 3rem; background: var(--accent); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block; transition: 0.3s; }
-        .btn:hover { background: #874121; transform: translateY(-3px); }
-        
-        @media(max-width: 768px) { .hero { grid-template-columns: 1fr; } .hero-img { height: 400px; } .grid-3 { grid-template-columns: 1fr; } }
+        body { margin: 0; font-family: 'Lato', sans-serif; display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
+        .img { background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200') center/cover; }
+        .txt { background: #F5E6D3; color: #5C4033; display: flex; flex-direction: column; justify-content: center; padding: 10%; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: #A0522D; margin-bottom: 1rem; }
+        a.back { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #A0522D; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+        a.btn { background: #A0522D; color: white; padding: 15px 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; width: fit-content; margin-top: 2rem; }
+        @media(max-width:768px){ body{grid-template-columns: 1fr;} .img{height:40vh;} }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" class="back">← Volver</a></nav>
-    
-    <div class="container">
-        <div class="hero">
-            <div class="txt">
-                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.7; color: var(--accent);">Serie 05</span>
-                <h1>Boho Chic</h1>
-                <p class="desc">Para almas libres. Una paleta de colores tierra, terracota y arena. Texturas orgánicas, flores secas y pampas grass.</p>
-                <a href="contacto.html" class="btn">Solicitar Diseño</a>
-            </div>
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" alt="Boda Boho" class="hero-img">
-        </div>
-
-        <div class="details">
-            <h3>Detalles de la Colección</h3>
-            <div class="grid-3">
-                <div class="feat">
-                    <i class="fa-solid fa-sun"></i>
-                    <h4>Cálido</h4>
-                    <p>Tonos atardecer que transmiten cercanía y calor.</p>
-                </div>
-                <div class="feat">
-                    <i class="fa-brands fa-pagelines"></i>
-                    <h4>Silvestre</h4>
-                    <p>Ilustraciones de trigo, flores secas y naturaleza árida.</p>
-                </div>
-                <div class="feat">
-                    <i class="fa-solid fa-feather"></i>
-                    <h4>Libre</h4>
-                    <p>Tipografía moderna y desenfadada, pero elegante.</p>
-                </div>
-            </div>
-        </div>
+    <a href="index.html" class="back">← Volver</a>
+    <div class="img"></div>
+    <div class="txt">
+        <span style="text-transform:uppercase; letter-spacing:3px; font-size:0.8rem;">Serie 05</span>
+        <h1>Boho Chic</h1>
+        <p>Terracota y flores secas. Para bodas libres y cálidas.</p>
+        <a href="contacto.html" class="btn">Elegir Diseño</a>
     </div>
 </body>
 </html>
