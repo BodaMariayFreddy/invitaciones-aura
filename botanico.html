@@ -2,110 +2,38 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Serie Botánica</title> 
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>AURA | Botánico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* CONFIGURACIÓN DEL TEMA: BOTÁNICO */
-        :root {
-            --theme-bg: #f4f7f5;       /* Gris verdoso muy suave */
-            --theme-text: #5c6b5d;     /* Verde musgo para texto */
-            --theme-title: #2d4632;    /* Verde bosque oscuro */
-            --theme-accent: #2d4632;   
-            --theme-btn-text: #ffffff;
-            --theme-img: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200'); /* Mesa Boda Verde */
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--theme-bg); color: var(--theme-text); transition: 0.5s; }
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        :root { --bg: #F3F5F4; --text: #2D3A31; --accent: #4A6753; --img: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200'); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
         
-        /* Layout Split */
-        .split-screen { display: flex; min-height: 100vh; }
+        .visual { flex: 1.2; background-image: var(--img); background-size: cover; position: relative; animation: zoomIn 20s infinite alternate; }
+        .content { flex: 1; padding: 6rem; display: flex; flex-direction: column; justify-content: center; position: relative; overflow-y: auto; }
         
-        .visual-side {
-            flex: 1; position: relative; overflow: hidden;
-            background-image: var(--theme-img);
-            background-size: cover; background-position: center;
-        }
-        .visual-side::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.1); }
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--accent); line-height: 1; margin-bottom: 2rem; }
+        p { line-height: 1.8; opacity: 0.8; margin-bottom: 2rem; max-width: 500px; font-size: 1.1rem; }
         
-        .content-side {
-            flex: 1; padding: 8vw; display: flex; flex-direction: column; justify-content: center;
-            background: var(--theme-bg);
-        }
+        .tag { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent); margin-bottom: 1rem; display: block; }
+        .back { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.8rem; z-index: 10; }
         
-        .back-btn { 
-            position: absolute; top: 40px; left: 40px; text-decoration: none; 
-            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;
-            color: white; z-index: 10; mix-blend-mode: difference; font-weight: 600;
-        }
+        .btn { padding: 1.5rem 4rem; background: var(--accent); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block; transition: 0.3s; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(74, 103, 83, 0.3); }
 
-        .tag { color: var(--theme-accent); letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px; display: block; opacity: 0.7; }
-        h1 { font-size: 4rem; line-height: 1; margin-bottom: 2rem; color: var(--theme-title); }
-        p { line-height: 1.8; margin-bottom: 2rem; opacity: 0.9; max-width: 500px; font-weight: 300; }
-        
-        .color-palette { display: flex; gap: 15px; margin-bottom: 3rem; }
-        .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
-
-        .btn-buy {
-            display: inline-block; padding: 1.2rem 3.5rem; 
-            background: var(--theme-accent); color: var(--theme-btn-text);
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.3s; width: fit-content; font-size: 0.8rem;
-        }
-        .btn-buy:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 70, 50, 0.2); opacity: 0.9; }
-
-        .details-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(0,0,0,0.1);
-        }
-        .detail-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px; color: var(--theme-title); }
-
-        @media (max-width: 768px) {
-            .split-screen { flex-direction: column; }
-            .visual-side { height: 40vh; }
-            h1 { font-size: 3rem; }
-            .content-side { padding: 40px 20px; }
-            .back-btn { color: #333; mix-blend-mode: normal; top: 20px; left: 20px; }
-        }
+        @keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @media(max-width: 900px) { body { flex-direction: column; } .visual { height: 40vh; } .content { padding: 2rem; } h1 { font-size: 3rem; } }
     </style>
 </head>
 <body>
-    <div class="split-screen">
-        <a href="index.html" class="back-btn">← Volver</a>
-        
-        <div class="visual-side"></div>
-
-        <div class="content-side">
-            <span class="tag">Serie 01 — Naturaleza</span>
-            <h1>Botánico Silvestre</h1>
-            <p>
-                Inspirado en los jardines ingleses y la flora salvaje. Una paleta de colores eucalipto y tierra, combinada con texturas que imitan el papel de algodón artesanal. Perfecto para bodas al aire libre o en masías rústicas.
-            </p>
-
-            <div class="color-palette">
-                <div class="color-circle" style="background: #2d4632;"></div>
-                <div class="color-circle" style="background: #8fa092;"></div>
-                <div class="color-circle" style="background: #f4f7f5; border-color: #ccc;"></div>
-            </div>
-
-            <a href="https://wa.me/123456789" class="btn-buy">Personalizar Diseño</a>
-
-            <div class="details-grid">
-                <div class="detail-item">
-                    <h4>Tipografía</h4>
-                    <p style="font-size: 0.9rem;">Orgánica y fluida, evocando la escritura a mano.</p>
-                </div>
-                <div class="detail-item">
-                    <h4>Atmósfera</h4>
-                    <p style="font-size: 0.9rem;">Fresca, Romántica, Natural, Diurna.</p>
-                </div>
-            </div>
-        </div>
+    <a href="index.html" class="back">← Volver</a>
+    <div class="visual"></div>
+    <div class="content">
+        <span class="tag">Serie 01 — Naturaleza</span>
+        <h1>Botánico Silvestre</h1>
+        <p>Inspirado en los jardines ingleses y la flora salvaje. Una paleta de colores eucalipto, crema y tierra, combinada con texturas que imitan el papel de algodón artesanal.</p>
+        <p>Perfecto para bodas al aire libre, masías rústicas o ceremonias donde la naturaleza es la protagonista.</p>
+        <div><a href="contacto.html" class="btn">Solicitar Diseño</a></div>
     </div>
 </body>
 </html>
