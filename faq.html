@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>AURA | Ayuda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Lato', sans-serif; background: #FDFBF7; color: #111; margin: 0; padding: 4rem 2rem; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .back { text-decoration: none; color: #999; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; }
+        h1 { font-family: serif; font-size: 3rem; margin: 2rem 0; }
+        
+        details { padding: 1.5rem 0; border-bottom: 1px solid #ddd; cursor: pointer; }
+        summary { font-weight: 700; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; }
+        summary::after { content: '+'; color: #C5A059; font-size: 1.5rem; }
+        details[open] summary::after { content: '-'; }
+        p { color: #555; line-height: 1.6; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">← Volver</a>
+        <h1>Preguntas Frecuentes</h1>
+        
+        <details>
+            <summary>¿Cuánto tardáis en entregar la invitación?</summary>
+            <p>Una vez recibimos vuestros textos y fotos, nuestro equipo de diseño tarda entre 5 y 7 días laborables en enviaros la primera propuesta para revisión.</p>
+        </details>
+        
+        <details>
+            <summary>¿Cómo se envía a los invitados?</summary>
+            <p>Os entregamos un enlace web privado (ej: bodaana-luis.com/invitacion). Podéis enviarlo por WhatsApp, Email o incluso imprimir un código QR en una tarjeta física.</p>
+        </details>
+
+        <details>
+            <summary>¿Funciona en todos los móviles?</summary>
+            <p>Sí. A diferencia de las Apps, nuestras invitaciones son webs responsivas que funcionan en cualquier iPhone o Android sin instalar nada.</p>
+        </details>
+
+        <details>
+            <summary>¿Puedo proteger la invitación con contraseña?</summary>
+            <p>Sí, ofrecemos la opción de añadir una contraseña de acceso para garantizar la privacidad de vuestro evento.</p>
+        </details>
+    </div>
+</body>
+</html>
