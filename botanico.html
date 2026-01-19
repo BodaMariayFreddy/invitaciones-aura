@@ -3,67 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Detalle Estilo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <title>AURA | Serie Botánica</title> 
     
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Estilos base iguales a la home para consistencia */
-        :root { --col-primary: #153e32; --col-gold: #cfaa68; --col-bg: #fdfcf8; }
-        body { margin: 0; font-family: 'Montserrat', sans-serif; background: var(--col-bg); color: #333; }
-        h1, h2 { font-family: 'Cinzel Decorative', serif; color: var(--col-primary); }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        
-        /* Header Simple */
-        header { padding: 20px; text-align: center; border-bottom: 1px solid #ddd; }
-        .back-link { text-decoration: none; color: #666; font-size: 0.9rem; text-transform: uppercase; }
-        
-        /* Contenido */
-        .style-hero { text-align: center; padding: 4rem 0; }
-        .style-hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
-        .style-desc { max-width: 600px; margin: 0 auto; line-height: 1.8; color: #555; }
-        
-        .moodboard { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 4rem; }
-        .moodboard img { width: 100%; height: 400px; object-fit: cover; border-radius: 5px; }
-        
-        .cta-box {
-            text-align: center; margin-top: 4rem; padding: 3rem;
-            background: #fff; border: 1px solid var(--col-gold);
+        /* CONFIGURACIÓN DEL TEMA: BOTÁNICO */
+        :root {
+            --theme-bg: #f4f7f5;       /* Gris verdoso muy suave */
+            --theme-text: #5c6b5d;     /* Verde musgo para texto */
+            --theme-title: #2d4632;    /* Verde bosque oscuro */
+            --theme-accent: #2d4632;   
+            --theme-btn-text: #ffffff;
+            --theme-img: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200'); /* Mesa Boda Verde */
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .btn {
-            background: var(--col-primary); color: white; padding: 1rem 2rem;
-            text-decoration: none; text-transform: uppercase; display: inline-block; margin-top: 1rem;
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--theme-bg); color: var(--theme-text); transition: 0.5s; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; }
+        
+        /* Layout Split */
+        .split-screen { display: flex; min-height: 100vh; }
+        
+        .visual-side {
+            flex: 1; position: relative; overflow: hidden;
+            background-image: var(--theme-img);
+            background-size: cover; background-position: center;
+        }
+        .visual-side::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.1); }
+        
+        .content-side {
+            flex: 1; padding: 8vw; display: flex; flex-direction: column; justify-content: center;
+            background: var(--theme-bg);
+        }
+        
+        .back-btn { 
+            position: absolute; top: 40px; left: 40px; text-decoration: none; 
+            text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;
+            color: white; z-index: 10; mix-blend-mode: difference; font-weight: 600;
+        }
+
+        .tag { color: var(--theme-accent); letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px; display: block; opacity: 0.7; }
+        h1 { font-size: 4rem; line-height: 1; margin-bottom: 2rem; color: var(--theme-title); }
+        p { line-height: 1.8; margin-bottom: 2rem; opacity: 0.9; max-width: 500px; font-weight: 300; }
+        
+        .color-palette { display: flex; gap: 15px; margin-bottom: 3rem; }
+        .color-circle { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+
+        .btn-buy {
+            display: inline-block; padding: 1.2rem 3.5rem; 
+            background: var(--theme-accent); color: var(--theme-btn-text);
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s; width: fit-content; font-size: 0.8rem;
+        }
+        .btn-buy:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(45, 70, 50, 0.2); opacity: 0.9; }
+
+        .details-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 4rem; padding-top: 4rem; border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .detail-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 10px; color: var(--theme-title); }
+
+        @media (max-width: 768px) {
+            .split-screen { flex-direction: column; }
+            .visual-side { height: 40vh; }
+            h1 { font-size: 3rem; }
+            .content-side { padding: 40px 20px; }
+            .back-btn { color: #333; mix-blend-mode: normal; top: 20px; left: 20px; }
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <a href="index.html" class="back-link">← Volver al Inicio</a>
-    </header>
-
-    <div class="container">
+    <div class="split-screen">
+        <a href="index.html" class="back-btn">← Volver</a>
         
-        <div class="style-hero">
-            <h1>Botánico Silvestre</h1> 
-            
-            <p class="style-desc">
-                Inspirado en la naturaleza salvaje. Tonos verdes, ilustraciones de eucalipto y tipografías orgánicas. 
-                Perfecto para bodas en jardines, masías o al aire libre. Transmite frescura y romanticismo natural.
+        <div class="visual-side"></div>
+
+        <div class="content-side">
+            <span class="tag">Serie 01 — Naturaleza</span>
+            <h1>Botánico Silvestre</h1>
+            <p>
+                Inspirado en los jardines ingleses y la flora salvaje. Una paleta de colores eucalipto y tierra, combinada con texturas que imitan el papel de algodón artesanal. Perfecto para bodas al aire libre o en masías rústicas.
             </p>
-        </div>
 
-        <div class="moodboard">
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0202128?auto=format&fit=crop&w=600&q=80" alt="Detalle 1">
-            <img src="https://images.unsplash.com/photo-1507915977619-6ccfe8003ae6?auto=format&fit=crop&w=600&q=80" alt="Detalle 2">
-        </div>
+            <div class="color-palette">
+                <div class="color-circle" style="background: #2d4632;"></div>
+                <div class="color-circle" style="background: #8fa092;"></div>
+                <div class="color-circle" style="background: #f4f7f5; border-color: #ccc;"></div>
+            </div>
 
-        <div class="cta-box">
-            <h2>¿Es este tu estilo?</h2>
-            <p>Personalizamos los textos y fotos, pero mantenemos esta esencia visual.</p>
-            <a href="https://wa.me/123456789?text=Hola,%20me%20interesa%20el%20estilo%20Botanico" class="btn">Solicitar Presupuesto</a>
-        </div>
+            <a href="https://wa.me/123456789" class="btn-buy">Personalizar Diseño</a>
 
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h4>Tipografía</h4>
+                    <p style="font-size: 0.9rem;">Orgánica y fluida, evocando la escritura a mano.</p>
+                </div>
+                <div class="detail-item">
+                    <h4>Atmósfera</h4>
+                    <p style="font-size: 0.9rem;">Fresca, Romántica, Natural, Diurna.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
 </body>
 </html>
