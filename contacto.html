@@ -4,116 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA | Contacto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0a0a0a; --text: #f0f0f0; --accent: #D4AF37;
-        }
+        :root { --bg: #050505; --text: #eee; --accent: #D4AF37; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
         
-        body {
-            background: var(--bg); color: var(--text);
-            font-family: 'Montserrat', sans-serif;
-            min-height: 100vh;
-            display: flex; flex-direction: column;
-        }
-
-        nav { padding: 2rem; position: absolute; width: 100%; top: 0; left: 0; }
-        .back { color: #888; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .nav { padding: 2rem; position: absolute; width: 100%; }
+        .back { color: #666; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: 0.3s; }
         .back:hover { color: white; }
 
-        .container {
-            flex: 1;
-            display: flex; align-items: center; justify-content: center;
-            padding: 2rem;
-        }
-
-        .form-wrapper {
-            width: 100%; max-width: 700px;
-            padding: 4rem;
-            border: 1px solid #222;
-            background: #0f0f0f;
-        }
-
+        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        
+        .form-box { width: 100%; max-width: 600px; padding: 4rem; background: #0a0a0a; border: 1px solid #1a1a1a; }
+        
         h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem; text-align: center; }
-        p.subtitle { text-align: center; color: #666; margin-bottom: 4rem; }
-
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        p.sub { text-align: center; color: #666; margin-bottom: 3rem; }
         
-        .group { display: flex; flex-direction: column; }
-        label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .field { display: flex; flex-direction: column; gap: 0.5rem; }
         
-        input, select, textarea {
-            background: transparent; border: none; border-bottom: 1px solid #333;
-            padding: 10px 0; color: white; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
-            outline: none; transition: 0.3s;
-        }
+        label { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; color: #555; }
+        input, select, textarea { background: transparent; border: none; border-bottom: 1px solid #333; padding: 10px 0; color: white; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; outline: none; transition: 0.3s; }
         input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-
-        select { color: #888; cursor: pointer; }
-
-        button {
-            width: 100%; padding: 1.5rem; background: var(--accent); color: black;
-            border: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
-            cursor: pointer; transition: 0.3s; margin-top: 2rem;
-        }
+        
+        button { width: 100%; padding: 1.5rem; background: var(--accent); color: black; border: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-top: 2rem; cursor: pointer; transition: 0.3s; }
         button:hover { background: white; }
 
-        @media(max-width: 768px) {
-            .form-wrapper { padding: 2rem; border: none; background: transparent; }
-            .form-grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-        }
+        @media(max-width: 768px) { .form-box { padding: 2rem; border: none; background: transparent; } .grid { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" class="back">← Volver al inicio</a></nav>
-
+    <div class="nav"><a href="index.html" class="back">← Volver al inicio</a></div>
     <div class="container">
-        <div class="form-wrapper">
+        <div class="form-box">
             <h1>Empecemos</h1>
-            <p class="subtitle">Cuéntanos sobre vuestra boda. Respondemos en 24h.</p>
-
+            <p class="sub">Cuéntanos sobre vuestra boda. Respondemos en 24h.</p>
             <form>
-                <div class="form-grid">
-                    <div class="group">
-                        <label>Nombre 1</label>
-                        <input type="text" placeholder="Tu nombre">
-                    </div>
-                    <div class="group">
-                        <label>Nombre 2</label>
-                        <input type="text" placeholder="Su nombre">
-                    </div>
+                <div class="grid">
+                    <div class="field"><label>Nombre 1</label><input type="text" placeholder="Tu nombre"></div>
+                    <div class="field"><label>Nombre 2</label><input type="text" placeholder="Su nombre"></div>
                 </div>
-
-                <div class="form-grid">
-                    <div class="group">
-                        <label>Email</label>
-                        <input type="email" placeholder="hola@email.com">
-                    </div>
-                    <div class="group">
-                        <label>Fecha Boda</label>
-                        <input type="text" placeholder="DD / MM / AA">
-                    </div>
+                <div class="grid">
+                    <div class="field"><label>Email</label><input type="email" placeholder="hola@email.com"></div>
+                    <div class="field"><label>Fecha</label><input type="text" placeholder="DD / MM / AA"></div>
                 </div>
-
-                <div class="group" style="margin-bottom: 2rem;">
-                    <label>Colección de Interés</label>
-                    <select>
-                        <option>Seleccionar Estilo...</option>
-                        <option>Botánico</option>
-                        <option>Minimal</option>
-                        <option>Gold Luxury</option>
-                        <option>Diseño a Medida</option>
-                    </select>
+                <div class="field" style="margin-bottom: 2rem;">
+                    <label>Colección</label>
+                    <select><option>Seleccionar...</option><option>Botánico</option><option>Minimal</option><option>Gold Luxury</option><option>A Medida</option></select>
                 </div>
-
-                <div class="group">
-                    <label>Detalles Extra</label>
-                    <textarea rows="2" placeholder="Cuéntanos algo más..."></textarea>
+                <div class="field">
+                    <label>Mensaje</label>
+                    <textarea rows="2" placeholder="Detalles extra..."></textarea>
                 </div>
-
-                <button type="submit">Enviar Solicitud</button>
+                <button type="submit">Enviar</button>
             </form>
         </div>
     </div>
