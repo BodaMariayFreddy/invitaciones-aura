@@ -1,170 +1,180 @@
 <!DOCTYPE html>
-<html lang="es" class="no-js">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AURA - Invitaciones de boda digitales de alta costura. Diseño editorial y tecnología inmersiva.">
-    <title>AURA | Digital Wedding Atelier</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    
+    <title>AURA | Atelier de Invitaciones Digitales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* -----------------------------------------------------------------
-           CORE VARIABLES (IVORY PRESTIGE THEME)
-        ----------------------------------------------------------------- */
         :root {
-            --c-bg: #FDFBF7;
-            --c-bg-alt: #F4F1EA;
-            --c-text: #1A1A1A;
-            --c-accent: #C5A059;
-            --c-line: rgba(0,0,0,0.08);
-            --f-display: 'Cinzel', serif;
-            --f-serif: 'Playfair Display', serif;
-            --f-sans: 'Lato', sans-serif;
-            --ease: cubic-bezier(0.77, 0, 0.175, 1);
+            /* PALETA 'IVORY GOLD' */
+            --bg: #FDFBF7;           /* Crema */
+            --surface: #FFFFFF;      /* Blanco */
+            --text-main: #1A1A1A;    /* Negro Suave */
+            --text-muted: #666666;
+            --accent: #C5A059;       /* Oro Mate */
+            --border: rgba(0,0,0,0.08);
+            
+            --f-head: 'Cinzel', serif;
+            --f-body: 'Montserrat', sans-serif;
         }
 
-        /* RESET & BASE */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* --- BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
-        body { background: var(--c-bg); color: var(--c-text); font-family: var(--f-sans); line-height: 1.7; overflow-x: hidden; }
-        
-        /* TEXTURA PAPEL */
-        body::before {
-            content: ""; position: fixed; inset: 0; opacity: 0.04; pointer-events: none; z-index: 9999;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
+        body { background: var(--bg); color: var(--text-main); font-family: var(--f-body); line-height: 1.7; overflow-x: hidden; }
 
         /* UTILIDADES */
         .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
-        h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        .uppercase { text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.75rem; font-weight: 700; }
-        .text-accent { color: var(--c-accent); }
-        .btn {
-            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--c-text);
-            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;
-            transition: 0.4s; position: relative; overflow: hidden; background: transparent; color: var(--c-text);
-        }
-        .btn:hover { background: var(--c-text); color: var(--c-bg); }
+        h1, h2, h3 { font-family: var(--f-head); font-weight: 400; line-height: 1.2; }
+        .text-center { text-align: center; }
+        .uppercase { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 600; }
+        .accent { color: var(--accent); }
         
-        /* HEADER */
-        header {
-            position: fixed; top: 0; width: 100%; padding: 2rem 0; z-index: 1000; transition: 0.5s;
+        .btn {
+            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--text-main);
+            background: transparent; color: var(--text-main); text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.8rem; text-decoration: none; transition: 0.3s;
+            cursor: pointer; position: relative; overflow: hidden;
         }
-        header.scrolled {
-            padding: 1rem 0; background: rgba(253, 251, 247, 0.95);
-            backdrop-filter: blur(10px); border-bottom: 1px solid var(--c-line);
-        }
-        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--f-display); font-size: 2rem; font-weight: 600; }
-        .menu { display: flex; gap: 3rem; }
-        .menu a { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; position: relative; }
-        .menu a::after { content:''; position: absolute; bottom:-5px; left:0; width:0; height:1px; background:var(--c-accent); transition:0.3s; }
-        .menu a:hover::after { width:100%; }
+        .btn:hover { background: var(--text-main); color: #fff; }
+        .btn-gold { border-color: var(--accent); color: var(--accent); }
+        .btn-gold:hover { background: var(--accent); color: white; }
 
-        /* HERO */
-        .hero {
-            height: 100vh; position: relative; display: flex; align-items: center;
-            background: url('https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1800') center/cover;
-        }
-        .hero::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
-        .hero-content {
-            position: relative; z-index: 10; text-align: center; color: white; width: 100%;
-            padding-top: 5rem;
-        }
-        .hero h1 { font-size: clamp(3rem, 7vw, 6rem); margin-bottom: 2rem; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 3rem; font-family: var(--f-serif); font-style: italic; opacity: 0.9; }
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-head); font-size: 1.8rem; font-weight: 600; text-decoration: none; color: var(--text-main); }
+        .menu a { margin: 0 1.5rem; text-decoration: none; color: var(--text-main); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; }
+        .menu a:hover { color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: #000; overflow: hidden; }
+        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 900px; padding: 2rem; }
+        .hero h1 { font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
         .btn-hero { border-color: white; color: white; }
         .btn-hero:hover { background: white; color: black; }
 
-        /* DEMO PHONE */
-        .showcase { padding: 8rem 0; background: var(--c-bg-alt); }
-        .showcase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .phone-mockup {
-            width: 300px; height: 600px; margin: 0 auto; background: #fff;
-            border-radius: 45px; border: 10px solid #e5e5e5; overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-        }
-        .phone-frame { width: 100%; height: 100%; border: none; }
-
-        /* COLLECTION GRID (5 STYLES) */
-        .collection { padding: 8rem 0; }
-        .col-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; margin-top: 4rem; }
+        /* --- TELÉFONO INTERACTIVO (LA JOYA) --- */
+        .demo-section { padding: 8rem 0; background: var(--bg-alt); }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
         
-        /* Layout Masonry Manual */
-        .card { display: block; position: relative; overflow: hidden; text-decoration: none; height: 500px; }
+        .phone-mockup {
+            width: 320px; height: 650px; margin: 0 auto;
+            background: #fff; border-radius: 45px; 
+            border: 12px solid #e0e0e0; box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden; transform: rotate(-2deg); transition: 0.5s;
+        }
+        .phone-mockup:hover { transform: rotate(0deg) scale(1.02); }
+        /* IFRAME: Aquí cargamos el archivo demo.html */
+        .phone-iframe { width: 100%; height: 100%; border: none; background: #fff; }
+
+        .feature-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .icon-box { width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
+        
+        /* --- COLECCIÓN --- */
+        .collection { padding: 8rem 0; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        
+        .card { display: block; position: relative; height: 500px; overflow: hidden; text-decoration: none; }
         .card img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
         .card:hover img { transform: scale(1.1); }
-        .card-info {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white; transform: translateY(20px); opacity: 0; transition: 0.5s;
+        .card-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex;
+            flex-direction: column; justify-content: flex-end; padding: 2rem;
+            opacity: 0; transition: 0.5s; transform: translateY(20px);
         }
-        .card:hover .card-info { transform: translateY(0); opacity: 1; }
+        .card:hover .card-overlay { opacity: 1; transform: translateY(0); }
+        .card-title { color: white; font-size: 2rem; margin-bottom: 0.5rem; }
+        .card-sub { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; }
+
+        /* --- TARIFAS (NUEVO) --- */
+        .pricing { padding: 8rem 0; background: var(--surface); }
+        .price-card { 
+            padding: 3rem; border: 1px solid var(--border); text-align: center; transition: 0.3s;
+            display: flex; flex-direction: column;
+        }
+        .price-card:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); transform: translateY(-10px); }
         
-        /* Grid Spans */
-        .c-1 { grid-column: span 6; } /* Botanico */
-        .c-2 { grid-column: span 6; } /* Minimal */
-        .c-3 { grid-column: span 4; height: 400px; } /* Gold */
-        .c-4 { grid-column: span 4; height: 400px; } /* Romantico */
-        .c-5 { grid-column: span 4; height: 400px; } /* Boho */
+        .price-card.featured { background: #111; color: white; border: none; transform: scale(1.05); z-index: 2; }
+        .price-card.featured .features li { color: #aaa; border-color: rgba(255,255,255,0.1); }
+        .price-card.featured .price { color: var(--accent); }
+        
+        .plan-name { font-size: 1.5rem; font-family: var(--f-head); margin-bottom: 1rem; }
+        .price { font-size: 3.5rem; font-family: var(--f-head); color: var(--text-main); margin-bottom: 2rem; }
+        .price span { font-size: 1rem; color: var(--text-muted); }
+        
+        .features { list-style: none; margin-bottom: 3rem; flex-grow: 1; }
+        .features li { padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+        .features li:last-child { border: none; }
 
-        /* FOOTER */
+        /* --- FOOTER --- */
         footer { background: #111; color: white; padding: 5rem 0; text-align: center; }
-        .f-links a { color: #888; margin: 0 1rem; font-size: 0.8rem; text-transform: uppercase; }
-        .f-links a:hover { color: var(--c-accent); }
+        .f-nav { margin: 2rem 0; }
+        .f-nav a { color: #888; margin: 0 1rem; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; }
+        .f-nav a:hover { color: var(--accent); }
 
-        @media(max-width: 1024px) {
-            .showcase-grid { grid-template-columns: 1fr; }
-            .col-grid { display: flex; flex-direction: column; }
-            .card { height: 400px; }
+        @media(max-width: 900px) {
+            .demo-grid, .grid-3 { grid-template-columns: 1fr; }
             .menu { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .price-card.featured { transform: scale(1); }
         }
     </style>
 </head>
 <body>
 
-    <header id="header">
-        <div class="container nav-wrap">
-            <a href="index.html" class="logo">AURA.</a>
+    <header>
+        <div class="container nav-inner">
+            <a href="#" class="logo">AURA.</a>
             <nav class="menu">
-                <a href="atelier.html">El Atelier</a>
                 <a href="#experiencia">Experiencia</a>
                 <a href="#coleccion">Colección</a>
-                <a href="faq.html">Ayuda</a>
+                <a href="#precios">Tarifas</a>
             </nav>
-            <a href="contacto.html" class="btn">Empezar</a>
+            <a href="contacto.html" class="btn btn-gold">Empezar</a>
         </div>
     </header>
 
     <section class="hero">
+        <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1600" class="hero-img" alt="Boda Luxury">
         <div class="hero-content">
-            <span class="uppercase text-accent">Digital Wedding Atelier</span>
-            <h1>Invitaciones<br><em>Eternas</em></h1>
-            <p>La elegancia del papel, elevada por la tecnología. Crea una experiencia inolvidable para tus invitados.</p>
-            <a href="#coleccion" class="btn btn-hero">Ver Colección</a>
+            <span class="uppercase accent">Atelier Digital</span>
+            <h1>Invitaciones que <br><em>Cuentan Historias</em></h1>
+            <p>Fusionamos el diseño editorial con la tecnología interactiva. Sin papel, sin límites.</p>
+            <a href="#coleccion" class="btn btn-hero">Ver Diseños</a>
         </div>
     </section>
 
-    <section id="experiencia" class="showcase">
-        <div class="container showcase-grid">
+    <section id="experiencia" class="demo-section">
+        <div class="container demo-grid">
             <div class="info">
-                <span class="uppercase text-accent">Interactive Demo</span>
-                <h2 style="font-size: 3rem; margin: 1rem 0;">Prueba la Magia</h2>
-                <p>Interactúa con el teléfono. Haz scroll, confirma asistencia y explora el mapa. Es una invitación real, viva y fluida.</p>
-                <ul style="margin-top: 2rem; list-style: none;">
-                    <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check text-accent"></i> RSVP Integrado</li>
-                    <li style="margin-bottom: 1rem;"><i class="fa-solid fa-check text-accent"></i> Google Maps Nativo</li>
-                    <li><i class="fa-solid fa-check text-accent"></i> Galería HD</li>
-                </ul>
+                <span class="uppercase accent">Prueba Real</span>
+                <h2 style="font-size: 3rem; margin: 1rem 0;">Tócala. Siente la diferencia.</h2>
+                <p>Lo que ves a la derecha no es un vídeo. Es una invitación real funcionando. Haz scroll, pulsa los botones y explora. Así es como tus invitados recibirán la noticia.</p>
+                
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div>
+                        <h3>Diseño Vertical</h3>
+                        <p style="margin:0; font-size: 0.9rem;">Pensado para verse perfecto en cualquier smartphone.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box"><i class="fa-regular fa-calendar-check"></i></div>
+                    <div>
+                        <h3>RSVP Instantáneo</h3>
+                        <p style="margin:0; font-size: 0.9rem;">Confirmaciones directas a tu WhatsApp o Email.</p>
+                    </div>
+                </div>
             </div>
+            
             <div class="phone-mockup">
-                <iframe id="demoFrame" class="phone-frame"></iframe>
+                <iframe src="demo.html" class="phone-iframe" title="Demo Invitación"></iframe>
             </div>
         </div>
     </section>
@@ -172,92 +182,92 @@
     <section id="coleccion" class="collection">
         <div class="container">
             <div class="text-center">
-                <span class="uppercase text-accent">Nuestras Series</span>
-                <h2 style="font-size: 3rem;">La Colección 2026</h2>
+                <span class="uppercase accent">Nuestras Series</span>
+                <h2>La Colección 2026</h2>
             </div>
-            
-            <div class="col-grid">
-                <a href="botanico.html" class="card c-1">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200" alt="Botánico">
-                    <div class="card-info">
-                        <h3>Botánico</h3>
-                        <span class="uppercase text-accent">Ver Diseño</span>
+            <div class="grid-3">
+                <a href="botanico.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Botanico">
+                    <div class="card-overlay">
+                        <span class="card-sub">Serie 01</span>
+                        <h3 class="card-title">Botánico</h3>
                     </div>
                 </a>
-                
-                <a href="minimal.html" class="card c-2">
-                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=1200" alt="Minimal">
-                    <div class="card-info">
-                        <h3>Minimal</h3>
-                        <span class="uppercase text-accent">Ver Diseño</span>
+                <a href="minimal.html" class="card">
+                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=800" alt="Minimal">
+                    <div class="card-overlay">
+                        <span class="card-sub">Serie 02</span>
+                        <h3 class="card-title">Minimal</h3>
                     </div>
                 </a>
-
-                <a href="gold.html" class="card c-3">
+                <a href="gold.html" class="card">
                     <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" alt="Gold">
-                    <div class="card-info">
-                        <h3>Gold Luxury</h3>
-                        <span class="uppercase text-accent">Ver Diseño</span>
-                    </div>
-                </a>
-
-                <a href="romantico.html" class="card c-4">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=800" alt="Romántico">
-                    <div class="card-info">
-                        <h3>Romántico</h3>
-                        <span class="uppercase text-accent">Ver Diseño</span>
-                    </div>
-                </a>
-
-                <a href="boho.html" class="card c-5">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" alt="Boho">
-                    <div class="card-info">
-                        <h3>Boho Chic</h3>
-                        <span class="uppercase text-accent">Ver Diseño</span>
+                    <div class="card-overlay">
+                        <span class="card-sub">Serie 03</span>
+                        <h3 class="card-title">Gold Luxury</h3>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
+    <section id="precios" class="pricing">
+        <div class="container">
+            <div class="text-center">
+                <span class="uppercase accent">Inversión</span>
+                <h2>Planes Simples</h2>
+            </div>
+            <div class="pricing-table grid-3">
+                <div class="price-card">
+                    <h3 class="plan-name">Essential</h3>
+                    <div class="price">89€</div>
+                    <ul class="features">
+                        <li>Diseño Plantilla AURA</li>
+                        <li>Ubicación y Mapa GPS</li>
+                        <li>RSVP por WhatsApp</li>
+                        <li>3 meses online</li>
+                    </ul>
+                    <a href="contacto.html" class="btn">Seleccionar</a>
+                </div>
+                <div class="price-card featured">
+                    <span class="uppercase accent" style="font-size:0.7rem; margin-bottom:1rem; display:block;">Recomendado</span>
+                    <h3 class="plan-name">Signature</h3>
+                    <div class="price">159€</div>
+                    <ul class="features">
+                        <li><strong>Todo lo de Essential</strong></li>
+                        <li>Galería de Fotos Ilimitada</li>
+                        <li>Cuenta Atrás Animada</li>
+                        <li>Sección "Nuestra Historia"</li>
+                        <li>1 año online</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn-gold">Seleccionar</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="plan-name">Bespoke</h3>
+                    <div class="price">299€</div>
+                    <ul class="features">
+                        <li>Diseño 100% a medida</li>
+                        <li>Dominio Propio (.com)</li>
+                        <li>Soporte Prioritario</li>
+                        <li>Idiomas Múltiples</li>
+                    </ul>
+                    <a href="contacto.html" class="btn">Consultar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
-            <h2 class="logo" style="color:white; font-size: 3rem;">AURA.</h2>
-            <div class="f-links" style="margin: 2rem 0;">
-                <a href="atelier.html">Nosotros</a>
-                <a href="faq.html">Ayuda</a>
+            <h2 style="font-size: 3rem;">AURA.</h2>
+            <div class="f-nav">
+                <a href="#experiencia">Experiencia</a>
                 <a href="contacto.html">Contacto</a>
+                <a href="#">Instagram</a>
             </div>
             <p style="font-size: 0.8rem; color: #555;">© 2026 Aura Digital Suites.</p>
         </div>
     </footer>
 
-    <script>
-        // HEADER SCROLL
-        window.addEventListener('scroll', () => {
-            const h = document.getElementById('header');
-            window.scrollY > 50 ? h.classList.add('scrolled') : h.classList.remove('scrolled');
-        });
-
-        // DEMO INJECTION (Para que cargue seguro)
-        const frame = document.getElementById('demoFrame');
-        const content = `
-            <!DOCTYPE html>
-            <html style="overflow:hidden;">
-            <body style="margin:0; font-family:serif; background:#f9f9f9; text-align:center;">
-                <div style="height:100vh; display:flex; flex-direction:column; justify-content:center; background:url('https://images.unsplash.com/photo-1522673607200-164530389393?q=80&w=400') center/cover;">
-                    <div style="background:rgba(255,255,255,0.8); padding:20px; margin:20px;">
-                        <h2 style="margin:0; font-size:2rem;">Ana & Juan</h2>
-                        <p style="margin:10px 0; font-size:0.8rem; letter-spacing:2px;">24 . 08 . 2026</p>
-                        <button style="padding:10px 20px; background:#C5A059; border:none; color:white; text-transform:uppercase; font-size:0.7rem; margin-top:10px;">Confirmar</button>
-                    </div>
-                </div>
-            </body>
-            </html>
-        `;
-        frame.contentWindow.document.open();
-        frame.contentWindow.document.write(content);
-        frame.contentWindow.document.close();
-    </script>
 </body>
 </html>
