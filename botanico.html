@@ -2,38 +2,103 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>AURA | Botánico</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Manrope:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #F3F5F4; --text: #2D3A31; --accent: #4A6753; --img: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200'); }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--text); display: flex; height: 100vh; overflow: hidden; }
-        
-        .visual { flex: 1.2; background-image: var(--img); background-size: cover; position: relative; animation: zoomIn 20s infinite alternate; }
-        .content { flex: 1; padding: 6rem; display: flex; flex-direction: column; justify-content: center; position: relative; overflow-y: auto; }
-        
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; color: var(--accent); line-height: 1; margin-bottom: 2rem; }
-        p { line-height: 1.8; opacity: 0.8; margin-bottom: 2rem; max-width: 500px; font-size: 1.1rem; }
-        
-        .tag { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent); margin-bottom: 1rem; display: block; }
-        .back { position: absolute; top: 30px; left: 30px; text-decoration: none; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.8rem; z-index: 10; }
-        
-        .btn { padding: 1.5rem 4rem; background: var(--accent); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block; transition: 0.3s; }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(74, 103, 83, 0.3); }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Colección Botánico</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        @keyframes zoomIn { from { transform: scale(1); } to { transform: scale(1.1); } }
-        @media(max-width: 900px) { body { flex-direction: column; } .visual { height: 40vh; } .content { padding: 2rem; } h1 { font-size: 3rem; } }
+    <style>
+        /* --- CONFIGURACIÓN TEMA BOTÁNICO --- */
+        :root {
+            --bg: #EAEFEA;           /* Verde Grisáceo muy pálido */
+            --text: #3A4A3E;         /* Verde Bosque */
+            --accent: #3A4A3E;       /* Acento oscuro */
+            --img: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200');
+        }
+
+        /* --- ESTILOS ESTRUCTURALES --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+        
+        /* Layout Split */
+        .layout { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+        
+        .visual { 
+            position: relative; 
+            background-image: var(--img); background-size: cover; background-position: center; 
+            height: 100vh; position: sticky; top: 0;
+        }
+        .visual::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.05); }
+        
+        .content { padding: 8rem 5rem; display: flex; flex-direction: column; justify-content: center; }
+        
+        h1 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; color: var(--accent); line-height: 1; margin-bottom: 2rem; }
+        .tag { text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 1rem; display: block; opacity: 0.6; }
+        
+        p { line-height: 1.8; margin-bottom: 1.5rem; max-width: 500px; font-size: 1.1rem; opacity: 0.9; }
+        
+        .back-btn { 
+            position: absolute; top: 40px; left: 40px; text-decoration: none; 
+            text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; 
+            color: #fff; z-index: 100; mix-blend-mode: difference; font-weight: 700;
+        }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 4rem 0;
+        }
+        .gallery-item { height: 250px; background: #ccc; border-radius: 4px; opacity: 0.8; transition: 0.3s; }
+        .gallery-item:hover { opacity: 1; }
+
+        .btn-buy {
+            padding: 1.5rem 4rem; background: var(--accent); color: #fff; 
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 600; 
+            display: inline-block; text-decoration: none; transition: 0.3s;
+            text-align: center; width: fit-content;
+        }
+        .btn-buy:hover { opacity: 0.9; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(58, 74, 62, 0.2); }
+
+        /* Iconos de características */
+        .features { display: flex; gap: 2rem; margin-bottom: 3rem; }
+        .feat { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media(max-width: 1024px) {
+            .layout { grid-template-columns: 1fr; }
+            .visual { height: 50vh; position: relative; }
+            .content { padding: 4rem 2rem; }
+            h1 { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back">← Volver</a>
-    <div class="visual"></div>
-    <div class="content">
-        <span class="tag">Serie 01 — Naturaleza</span>
-        <h1>Botánico Silvestre</h1>
-        <p>Inspirado en los jardines ingleses y la flora salvaje. Una paleta de colores eucalipto, crema y tierra, combinada con texturas que imitan el papel de algodón artesanal.</p>
-        <p>Perfecto para bodas al aire libre, masías rústicas o ceremonias donde la naturaleza es la protagonista.</p>
-        <div><a href="contacto.html" class="btn">Solicitar Diseño</a></div>
+    <div class="layout">
+        <a href="index.html" class="back-btn">← Volver al Menu</a>
+        
+        <div class="visual"></div>
+        
+        <div class="content">
+            <span class="tag">Serie 01 — Naturaleza</span>
+            <h1>Botánico Silvestre</h1>
+            
+            <p class="intro">
+                Inspirado en la flora salvaje y los jardines ingleses. Una invitación que respira calma.
+            </p>
+            <p>
+                Utilizamos tipografías que imitan la escritura manual y texturas de papel orgánico digital. La elección perfecta para bodas al aire libre, en masías o entornos rurales.
+            </p>
+
+            <div class="features">
+                <div class="feat"><i class="fa-solid fa-leaf"></i> Orgánico</div>
+                <div class="feat"><i class="fa-solid fa-wind"></i> Fresco</div>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=600') center/cover;"></div>
+                <div class="gallery-item" style="background: url('https://images.unsplash.com/photo-1605170439002-90845e8c0137?q=80&w=600') center/cover;"></div>
+            </div>
+
+            <a href="contacto.html" class="btn-buy">Elegir este Diseño</a>
+        </div>
     </div>
 </body>
 </html>
