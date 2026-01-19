@@ -3,69 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>AURA | Gold</title> 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        /* CONFIG GOLD */
-        :root { --bg: #0b0b0b; --text: #ccc; --accent: #D4AF37; }
-        body { margin: 0; font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); }
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
-        
-        nav { padding: 2rem; }
-        a.back { text-decoration: none; color: #fff; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; font-weight: bold; opacity: 0.5; }
-        
-        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
-        .hero-img { width: 100%; height: 600px; object-fit: cover; border: 1px solid #333; }
-        
-        h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; color: var(--accent); margin-bottom: 1rem; line-height: 1; }
-        p.desc { font-size: 1.1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 2rem; }
-        
-        .details { margin-top: 4rem; border-top: 1px solid #222; padding-top: 4rem; }
-        .details h3 { font-family: 'Playfair Display', serif; margin-bottom: 2rem; font-size: 2rem; color: white; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        .feat i { font-size: 2rem; margin-bottom: 1rem; color: var(--accent); }
-        
-        .btn { padding: 1.2rem 3rem; background: transparent; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; display: inline-block; transition: 0.3s; }
-        .btn:hover { background: var(--accent); color: #000; }
-        
-        @media(max-width: 768px) { .hero { grid-template-columns: 1fr; } .hero-img { height: 400px; } .grid-3 { grid-template-columns: 1fr; } }
+        body { margin: 0; font-family: 'Lato', sans-serif; display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
+        .img { background: url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1200') center/cover; }
+        .txt { background: #0b0b0b; color: #ccc; display: flex; flex-direction: column; justify-content: center; padding: 10%; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: #D4AF37; margin-bottom: 1rem; }
+        a.back { position: absolute; top: 20px; left: 20px; text-decoration: none; color: #fff; font-weight: bold; text-transform: uppercase; font-size: 0.8rem; }
+        a.btn { border: 1px solid #D4AF37; color: #D4AF37; padding: 15px 30px; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; width: fit-content; margin-top: 2rem; }
+        @media(max-width:768px){ body{grid-template-columns: 1fr;} .img{height:40vh;} }
     </style>
 </head>
 <body>
-    <nav><a href="index.html" class="back">← Volver</a></nav>
-    
-    <div class="container">
-        <div class="hero">
-            <div class="txt">
-                <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: var(--accent);">Serie 03</span>
-                <h1>Gold Luxury</h1>
-                <p class="desc">La máxima expresión de la elegancia nocturna. Fondos oscuros profundos y detalles en pan de oro. Etiqueta rigurosa.</p>
-                <a href="contacto.html" class="btn">Solicitar Diseño</a>
-            </div>
-            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" class="hero-img">
-        </div>
-
-        <div class="details">
-            <h3>Detalles de la Colección</h3>
-            <div class="grid-3">
-                <div class="feat">
-                    <i class="fa-solid fa-moon"></i>
-                    <h4>Nocturno</h4>
-                    <p>Diseñado para bodas de noche y galas black tie.</p>
-                </div>
-                <div class="feat">
-                    <i class="fa-solid fa-gem"></i>
-                    <h4>Premium</h4>
-                    <p>Acabados que simulan la estampación en oro (Hot Stamping).</p>
-                </div>
-                <div class="feat">
-                    <i class="fa-solid fa-crown"></i>
-                    <h4>Exclusivo</h4>
-                    <p>El lujo está en los detalles y el contraste.</p>
-                </div>
-            </div>
-        </div>
+    <a href="index.html" class="back">← Volver</a>
+    <div class="img"></div>
+    <div class="txt">
+        <span style="text-transform:uppercase; letter-spacing:3px; font-size:0.8rem;">Serie 03</span>
+        <h1>Gold Luxury</h1>
+        <p>Negro profundo y oro. Etiqueta rigurosa y elegancia nocturna.</p>
+        <a href="contacto.html" class="btn">Elegir Diseño</a>
     </div>
 </body>
 </html>
