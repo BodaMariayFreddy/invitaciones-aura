@@ -4,60 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AURA | Contacto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #050505; --text: #eee; --accent: #D4AF37; }
+        :root {
+            --bg: #FDFBF7; --text: #1A1A1A; --accent: #C5A059;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Lato', sans-serif;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
-        
+        body { background: var(--bg); color: var(--text); font-family: var(--font-sans); min-height: 100vh; display: flex; flex-direction: column; }
+
         .nav { padding: 2rem; position: absolute; width: 100%; }
         .back { color: #666; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: 0.3s; }
-        .back:hover { color: white; }
+        .back:hover { color: var(--accent); }
 
-        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-        
-        .form-box { width: 100%; max-width: 600px; padding: 4rem; background: #0a0a0a; border: 1px solid #1a1a1a; }
-        
-        h1 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--accent); margin-bottom: 1rem; text-align: center; }
-        p.sub { text-align: center; color: #666; margin-bottom: 3rem; }
-        
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-        .field { display: flex; flex-direction: column; gap: 0.5rem; }
-        
-        label { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; color: #555; }
-        input, select, textarea { background: transparent; border: none; border-bottom: 1px solid #333; padding: 10px 0; color: white; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; outline: none; transition: 0.3s; }
-        input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-        
-        button { width: 100%; padding: 1.5rem; background: var(--accent); color: black; border: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-top: 2rem; cursor: pointer; transition: 0.3s; }
-        button:hover { background: white; }
+        .container {
+            flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem;
+        }
 
-        @media(max-width: 768px) { .form-box { padding: 2rem; border: none; background: transparent; } .grid { grid-template-columns: 1fr; } h1 { font-size: 2.5rem; } }
+        .form-box {
+            width: 100%; max-width: 700px; padding: 4rem;
+            background: #FFFFFF; border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+        }
+
+        h1 { font-family: var(--font-serif); font-size: 3rem; color: var(--accent); margin-bottom: 1rem; text-align: center; }
+        p.sub { text-align: center; color: #666; margin-bottom: 3rem; font-style: italic; }
+
+        .form-group { margin-bottom: 2rem; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        
+        label { text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; color: #999; display: block; margin-bottom: 8px; }
+        
+        input, select, textarea {
+            width: 100%; background: #FAFAFA; border: none; border-bottom: 2px solid #EEE;
+            padding: 15px; color: #333; font-family: var(--font-serif); font-size: 1.1rem;
+            outline: none; transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent); background: #FFF; }
+
+        button {
+            width: 100%; padding: 1.5rem; background: var(--accent); color: white;
+            border: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+            cursor: pointer; transition: 0.3s; margin-top: 1rem;
+        }
+        button:hover { background: #1A1A1A; }
+
+        @media(max-width: 768px) {
+            .form-box { padding: 2rem; box-shadow: none; background: transparent; }
+            .row { grid-template-columns: 1fr; gap: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="nav"><a href="index.html" class="back">← Volver al inicio</a></div>
+
     <div class="container">
         <div class="form-box">
             <h1>Empecemos</h1>
             <p class="sub">Cuéntanos sobre vuestra boda. Respondemos en 24h.</p>
+
             <form>
-                <div class="grid">
-                    <div class="field"><label>Nombre 1</label><input type="text" placeholder="Tu nombre"></div>
-                    <div class="field"><label>Nombre 2</label><input type="text" placeholder="Su nombre"></div>
+                <div class="row">
+                    <div class="form-group"><label>Nombre 1</label><input type="text" placeholder="Tu nombre"></div>
+                    <div class="form-group"><label>Nombre 2</label><input type="text" placeholder="Su nombre"></div>
                 </div>
-                <div class="grid">
-                    <div class="field"><label>Email</label><input type="email" placeholder="hola@email.com"></div>
-                    <div class="field"><label>Fecha</label><input type="text" placeholder="DD / MM / AA"></div>
+
+                <div class="row">
+                    <div class="form-group"><label>Email</label><input type="email" placeholder="hola@email.com"></div>
+                    <div class="form-group"><label>Fecha</label><input type="text" placeholder="DD / MM / AA"></div>
                 </div>
-                <div class="field" style="margin-bottom: 2rem;">
-                    <label>Colección</label>
-                    <select><option>Seleccionar...</option><option>Botánico</option><option>Minimal</option><option>Gold Luxury</option><option>A Medida</option></select>
+
+                <div class="form-group">
+                    <label>Colección de Interés</label>
+                    <select>
+                        <option>Seleccionar Estilo...</option>
+                        <option>Botánico</option>
+                        <option>Minimal</option>
+                        <option>Gold Luxury</option>
+                        <option>Diseño a Medida</option>
+                    </select>
                 </div>
-                <div class="field">
+
+                <div class="form-group">
                     <label>Mensaje</label>
-                    <textarea rows="2" placeholder="Detalles extra..."></textarea>
+                    <textarea rows="3" placeholder="Detalles adicionales..."></textarea>
                 </div>
-                <button type="submit">Enviar</button>
+
+                <button type="submit">Enviar Solicitud</button>
             </form>
         </div>
     </div>
