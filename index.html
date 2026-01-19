@@ -3,125 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURA | Atelier de Invitaciones Digitales</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>AURA | Digital Wedding Atelier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            /* PALETA 'IVORY GOLD' */
-            --bg: #FDFBF7;           /* Crema */
-            --surface: #FFFFFF;      /* Blanco */
-            --text-main: #1A1A1A;    /* Negro Suave */
-            --text-muted: #666666;
-            --accent: #C5A059;       /* Oro Mate */
-            --border: rgba(0,0,0,0.08);
-            
-            --f-head: 'Cinzel', serif;
-            --f-body: 'Montserrat', sans-serif;
+            --bg: #FDFBF7; --surface: #FFFFFF; --text: #1A1A1A; --text-muted: #666;
+            --accent: #C5A059; --accent-dark: #8A6E36;
+            --f-head: 'Cinzel', serif; --f-sub: 'Cormorant Garamond', serif; --f-body: 'Montserrat', sans-serif;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* --- BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body { background: var(--bg); color: var(--text-main); font-family: var(--f-body); line-height: 1.7; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: var(--f-body); line-height: 1.7; overflow-x: hidden; }
 
         /* UTILIDADES */
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
-        h1, h2, h3 { font-family: var(--f-head); font-weight: 400; line-height: 1.2; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
         .text-center { text-align: center; }
         .uppercase { text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; font-weight: 600; }
         .accent { color: var(--accent); }
+        h1, h2, h3 { font-family: var(--f-head); font-weight: 400; margin-bottom: 1rem; }
+        h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1; }
+        h2 { font-size: 3rem; }
         
         .btn {
-            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--text-main);
-            background: transparent; color: var(--text-main); text-transform: uppercase;
-            letter-spacing: 2px; font-size: 0.8rem; text-decoration: none; transition: 0.3s;
-            cursor: pointer; position: relative; overflow: hidden;
+            display: inline-block; padding: 1.2rem 3rem; border: 1px solid var(--text);
+            background: transparent; color: var(--text); text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.8rem; text-decoration: none; transition: 0.4s;
         }
-        .btn:hover { background: var(--text-main); color: #fff; }
+        .btn:hover { background: var(--text); color: white; }
         .btn-gold { border-color: var(--accent); color: var(--accent); }
         .btn-gold:hover { background: var(--accent); color: white; }
 
-        /* --- HEADER --- */
-        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--f-head); font-size: 1.8rem; font-weight: 600; text-decoration: none; color: var(--text-main); }
-        .menu a { margin: 0 1.5rem; text-decoration: none; color: var(--text-main); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; }
+        /* HEADER */
+        header { position: fixed; top: 0; width: 100%; padding: 1.5rem 0; z-index: 1000; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-wrap { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--f-head); font-size: 1.8rem; font-weight: 600; text-decoration: none; color: var(--text); }
+        .menu a { margin: 0 1.5rem; text-decoration: none; color: var(--text); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; transition: 0.3s; }
         .menu a:hover { color: var(--accent); }
 
-        /* --- HERO --- */
+        /* HERO */
         .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: #000; overflow: hidden; }
-        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-        .hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 900px; padding: 2rem; }
-        .hero h1 { font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.5rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; animation: zoom 20s infinite alternate; }
+        .hero-content { position: relative; z-index: 2; text-align: center; color: white; padding-top: 4rem; }
+        .hero p { font-family: var(--f-sub); font-size: 1.5rem; font-style: italic; margin-bottom: 2rem; opacity: 0.9; }
         .btn-hero { border-color: white; color: white; }
         .btn-hero:hover { background: white; color: black; }
 
-        /* --- TELÉFONO INTERACTIVO (LA JOYA) --- */
+        /* ATELIER TEASER */
+        .atelier-teaser { padding: 8rem 0; background: white; }
+        .atelier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .atelier-img { width: 100%; border-radius: 4px; }
+
+        /* PHONE DEMO */
         .demo-section { padding: 8rem 0; background: var(--bg-alt); }
         .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        
         .phone-mockup {
-            width: 320px; height: 650px; margin: 0 auto;
-            background: #fff; border-radius: 45px; 
-            border: 12px solid #e0e0e0; box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
-            position: relative; overflow: hidden; transform: rotate(-2deg); transition: 0.5s;
+            width: 320px; height: 650px; margin: 0 auto; background: #fff;
+            border-radius: 45px; border: 12px solid #e0e0e0; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
+            overflow: hidden; position: relative;
         }
-        .phone-mockup:hover { transform: rotate(0deg) scale(1.02); }
-        /* IFRAME: Aquí cargamos el archivo demo.html */
-        .phone-iframe { width: 100%; height: 100%; border: none; background: #fff; }
+        .phone-iframe { width: 100%; height: 100%; border: none; }
 
-        .feature-item { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; }
-        .icon-box { width: 60px; height: 60px; border-radius: 50%; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
-        
-        /* --- COLECCIÓN --- */
+        /* COLECCIÓN (GRID 5 ESTILOS) */
         .collection { padding: 8rem 0; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .col-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2rem; margin-top: 4rem; }
         
         .card { display: block; position: relative; height: 500px; overflow: hidden; text-decoration: none; }
         .card img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
-        .card:hover img { transform: scale(1.1); }
+        .card:hover img { transform: scale(1.05); }
         .card-overlay {
             position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex;
-            flex-direction: column; justify-content: flex-end; padding: 2rem;
+            flex-direction: column; justify-content: flex-end; padding: 2rem; color: white;
             opacity: 0; transition: 0.5s; transform: translateY(20px);
         }
         .card:hover .card-overlay { opacity: 1; transform: translateY(0); }
-        .card-title { color: white; font-size: 2rem; margin-bottom: 0.5rem; }
-        .card-sub { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; }
+        
+        /* Grid Layout */
+        .w-half { grid-column: span 3; } /* 50% width */
+        .w-third { grid-column: span 2; } /* 33% width */
 
-        /* --- TARIFAS (NUEVO) --- */
-        .pricing { padding: 8rem 0; background: var(--surface); }
-        .price-card { 
-            padding: 3rem; border: 1px solid var(--border); text-align: center; transition: 0.3s;
-            display: flex; flex-direction: column;
-        }
-        .price-card:hover { border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.05); transform: translateY(-10px); }
-        
-        .price-card.featured { background: #111; color: white; border: none; transform: scale(1.05); z-index: 2; }
-        .price-card.featured .features li { color: #aaa; border-color: rgba(255,255,255,0.1); }
-        .price-card.featured .price { color: var(--accent); }
-        
-        .plan-name { font-size: 1.5rem; font-family: var(--f-head); margin-bottom: 1rem; }
-        .price { font-size: 3.5rem; font-family: var(--f-head); color: var(--text-main); margin-bottom: 2rem; }
-        .price span { font-size: 1rem; color: var(--text-muted); }
-        
-        .features { list-style: none; margin-bottom: 3rem; flex-grow: 1; }
-        .features li { padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        .features li:last-child { border: none; }
+        /* PRICING */
+        .pricing { padding: 8rem 0; background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
+        .price-card { padding: 3rem; border: 1px solid rgba(0,0,0,0.1); text-align: center; transition: 0.3s; }
+        .price-card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .price-card.featured { background: #1a1a1a; color: white; border: none; transform: scale(1.05); }
+        .price-val { font-family: var(--f-head); font-size: 3rem; margin: 1rem 0; color: var(--accent); }
+        .price-feat li { margin-bottom: 1rem; color: #666; font-size: 0.9rem; }
+        .price-card.featured .price-feat li { color: #aaa; }
 
-        /* --- FOOTER --- */
+        /* FOOTER */
         footer { background: #111; color: white; padding: 5rem 0; text-align: center; }
-        .f-nav { margin: 2rem 0; }
-        .f-nav a { color: #888; margin: 0 1rem; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; }
-        .f-nav a:hover { color: var(--accent); }
+        .f-links a { color: #888; margin: 0 1rem; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; }
 
-        @media(max-width: 900px) {
-            .demo-grid, .grid-3 { grid-template-columns: 1fr; }
+        @keyframes zoom { to { transform: scale(1.1); } }
+        @media(max-width: 1024px) {
+            .nav-wrap, .atelier-grid, .demo-grid, .col-grid, .pricing-grid { display: flex; flex-direction: column; }
             .menu { display: none; }
-            .hero h1 { font-size: 3rem; }
+            .card { width: 100%; height: 400px; }
             .price-card.featured { transform: scale(1); }
         }
     </style>
@@ -129,52 +111,63 @@
 <body>
 
     <header>
-        <div class="container nav-inner">
-            <a href="#" class="logo">AURA.</a>
+        <div class="container nav-wrap">
+            <a href="index.html" class="logo">AURA.</a>
             <nav class="menu">
-                <a href="#experiencia">Experiencia</a>
+                <a href="atelier.html">El Atelier</a>
                 <a href="#coleccion">Colección</a>
-                <a href="#precios">Tarifas</a>
+                <a href="#tarifas">Tarifas</a>
             </nav>
             <a href="contacto.html" class="btn btn-gold">Empezar</a>
         </div>
     </header>
 
     <section class="hero">
-        <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1600" class="hero-img" alt="Boda Luxury">
+        <img src="https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=1600" class="hero-img">
         <div class="hero-content">
-            <span class="uppercase accent">Atelier Digital</span>
-            <h1>Invitaciones que <br><em>Cuentan Historias</em></h1>
-            <p>Fusionamos el diseño editorial con la tecnología interactiva. Sin papel, sin límites.</p>
-            <a href="#coleccion" class="btn btn-hero">Ver Diseños</a>
+            <span class="uppercase accent">Alta Costura Digital</span>
+            <h1>Invitaciones <br><em>Eternas</em></h1>
+            <p>Donde el diseño editorial se encuentra con la tecnología.</p>
+            <a href="#coleccion" class="btn btn-hero">Ver Colección</a>
         </div>
     </section>
 
-    <section id="experiencia" class="demo-section">
+    <section class="atelier-teaser">
+        <div class="container atelier-grid">
+            <div class="txt">
+                <span class="uppercase accent">Nuestra Esencia</span>
+                <h2 style="font-size: 3rem;">El Atelier</h2>
+                <p style="color: #666; margin-bottom: 2rem;">
+                    AURA nace para las parejas que valoran la estética pero exigen funcionalidad. 
+                    Rechazamos los PDFs estáticos y las plantillas genéricas. 
+                    Creamos experiencias web vivas, diseñadas a mano, que guían a tus invitados hasta el altar.
+                </p>
+                <a href="atelier.html" class="btn">Conoce nuestra historia</a>
+            </div>
+            <div class="img">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800" class="atelier-img" alt="Oficina Diseño">
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section">
         <div class="container demo-grid">
             <div class="info">
-                <span class="uppercase accent">Prueba Real</span>
-                <h2 style="font-size: 3rem; margin: 1rem 0;">Tócala. Siente la diferencia.</h2>
-                <p>Lo que ves a la derecha no es un vídeo. Es una invitación real funcionando. Haz scroll, pulsa los botones y explora. Así es como tus invitados recibirán la noticia.</p>
-                
-                <div class="feature-item">
-                    <div class="icon-box"><i class="fa-solid fa-mobile-screen"></i></div>
-                    <div>
-                        <h3>Diseño Vertical</h3>
-                        <p style="margin:0; font-size: 0.9rem;">Pensado para verse perfecto en cualquier smartphone.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="icon-box"><i class="fa-regular fa-calendar-check"></i></div>
-                    <div>
-                        <h3>RSVP Instantáneo</h3>
-                        <p style="margin:0; font-size: 0.9rem;">Confirmaciones directas a tu WhatsApp o Email.</p>
-                    </div>
-                </div>
+                <span class="uppercase accent">Interactivo</span>
+                <h2 style="font-size: 3rem;">Tócalo. Es Real.</h2>
+                <p style="color: #666;">
+                    Haz scroll en el teléfono de la derecha. Es una invitación AURA real.
+                    Observa la suavidad, la cuenta regresiva y el mapa integrado.
+                    Tus invitados tendrán toda la info de la boda en su bolsillo, sin instalar nada.
+                </p>
+                <ul style="margin-top: 2rem; list-style: none;">
+                    <li style="margin-bottom: 1rem;">✓ Animaciones fluidas</li>
+                    <li style="margin-bottom: 1rem;">✓ RSVP Integrado (WhatsApp/Email)</li>
+                    <li>✓ Geolocalización GPS</li>
+                </ul>
             </div>
-            
             <div class="phone-mockup">
-                <iframe src="demo.html" class="phone-iframe" title="Demo Invitación"></iframe>
+                <iframe src="demo.html" class="phone-iframe"></iframe>
             </div>
         </div>
     </section>
@@ -182,71 +175,70 @@
     <section id="coleccion" class="collection">
         <div class="container">
             <div class="text-center">
-                <span class="uppercase accent">Nuestras Series</span>
-                <h2>La Colección 2026</h2>
+                <span class="uppercase accent">Series 2026</span>
+                <h2>La Colección</h2>
             </div>
-            <div class="grid-3">
-                <a href="botanico.html" class="card">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800" alt="Botanico">
-                    <div class="card-overlay">
-                        <span class="card-sub">Serie 01</span>
-                        <h3 class="card-title">Botánico</h3>
-                    </div>
+            <div class="col-grid">
+                <a href="botanico.html" class="card w-half">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800">
+                    <div class="card-overlay"><h3>Botánico</h3><span class="uppercase accent">Ver Diseño</span></div>
                 </a>
-                <a href="minimal.html" class="card">
-                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=800" alt="Minimal">
-                    <div class="card-overlay">
-                        <span class="card-sub">Serie 02</span>
-                        <h3 class="card-title">Minimal</h3>
-                    </div>
+                <a href="minimal.html" class="card w-half">
+                    <img src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?q=80&w=800">
+                    <div class="card-overlay"><h3>Minimal</h3><span class="uppercase accent">Ver Diseño</span></div>
                 </a>
-                <a href="gold.html" class="card">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800" alt="Gold">
-                    <div class="card-overlay">
-                        <span class="card-sub">Serie 03</span>
-                        <h3 class="card-title">Gold Luxury</h3>
-                    </div>
+                <a href="gold.html" class="card w-third">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800">
+                    <div class="card-overlay"><h3>Gold Luxury</h3><span class="uppercase accent">Ver Diseño</span></div>
+                </a>
+                <a href="romantico.html" class="card w-third">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=800">
+                    <div class="card-overlay"><h3>Romántico</h3><span class="uppercase accent">Ver Diseño</span></div>
+                </a>
+                <a href="boho.html" class="card w-third">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800">
+                    <div class="card-overlay"><h3>Boho Chic</h3><span class="uppercase accent">Ver Diseño</span></div>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="precios" class="pricing">
+    <section id="tarifas" class="pricing">
         <div class="container">
             <div class="text-center">
                 <span class="uppercase accent">Inversión</span>
-                <h2>Planes Simples</h2>
+                <h2>Tarifas</h2>
             </div>
-            <div class="pricing-table grid-3">
+            <div class="pricing-grid">
                 <div class="price-card">
-                    <h3 class="plan-name">Essential</h3>
-                    <div class="price">89€</div>
-                    <ul class="features">
-                        <li>Diseño Plantilla AURA</li>
-                        <li>Ubicación y Mapa GPS</li>
+                    <h3>Essential</h3>
+                    <div class="price-val">89€</div>
+                    <ul class="price-feat features">
+                        <li>Diseño de Colección</li>
+                        <li>Mapa y Horarios</li>
                         <li>RSVP por WhatsApp</li>
-                        <li>3 meses online</li>
+                        <li>3 Meses Online</li>
                     </ul>
-                    <a href="contacto.html" class="btn">Seleccionar</a>
+                    <a href="contacto.html" class="btn">Elegir</a>
                 </div>
                 <div class="price-card featured">
-                    <span class="uppercase accent" style="font-size:0.7rem; margin-bottom:1rem; display:block;">Recomendado</span>
-                    <h3 class="plan-name">Signature</h3>
-                    <div class="price">159€</div>
-                    <ul class="features">
+                    <span class="uppercase accent" style="font-size:0.7rem; margin-bottom:1rem; display:block;">Best Seller</span>
+                    <h3>Signature</h3>
+                    <div class="price-val">159€</div>
+                    <ul class="price-feat features">
                         <li><strong>Todo lo de Essential</strong></li>
                         <li>Galería de Fotos Ilimitada</li>
                         <li>Cuenta Atrás Animada</li>
                         <li>Sección "Nuestra Historia"</li>
-                        <li>1 año online</li>
+                        <li>1 Año Online</li>
                     </ul>
-                    <a href="contacto.html" class="btn btn-gold">Seleccionar</a>
+                    <a href="contacto.html" class="btn btn-gold">Elegir</a>
                 </div>
                 <div class="price-card">
-                    <h3 class="plan-name">Bespoke</h3>
-                    <div class="price">299€</div>
-                    <ul class="features">
-                        <li>Diseño 100% a medida</li>
+                    <h3>Bespoke</h3>
+                    <div class="price-val">299€</div>
+                    <ul class="price-feat features">
+                        <li>Diseño 100% A Medida</li>
                         <li>Dominio Propio (.com)</li>
                         <li>Soporte Prioritario</li>
                         <li>Idiomas Múltiples</li>
@@ -259,11 +251,11 @@
 
     <footer>
         <div class="container">
-            <h2 style="font-size: 3rem;">AURA.</h2>
-            <div class="f-nav">
-                <a href="#experiencia">Experiencia</a>
+            <h2 class="logo" style="color:white; font-size: 3rem;">AURA.</h2>
+            <div class="f-links" style="margin: 2rem 0;">
+                <a href="atelier.html">Nosotros</a>
+                <a href="#tarifas">Tarifas</a>
                 <a href="contacto.html">Contacto</a>
-                <a href="#">Instagram</a>
             </div>
             <p style="font-size: 0.8rem; color: #555;">© 2026 Aura Digital Suites.</p>
         </div>
